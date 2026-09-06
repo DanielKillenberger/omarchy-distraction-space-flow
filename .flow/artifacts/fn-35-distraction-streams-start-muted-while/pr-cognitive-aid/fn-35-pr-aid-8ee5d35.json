@@ -1,0 +1,510 @@
+{
+  "artifactId": "fn-35-pr-aid-8ee5d35",
+  "baseSha": "49575052f680c6ba24e488cdb4913e1c08395f9b",
+  "changeWalkthrough": {
+    "groups": [
+      {
+        "files": [],
+        "kind": "problem",
+        "ordinal": 1,
+        "rIds": [],
+        "sourceRefs": [
+          "spec"
+        ],
+        "summary": "The distraction browser stopped keeping a long-lived stream; each notification sound creates a stream, plays, and tears it down, and the plugin muted only after a subscribe event and two pactl calls.",
+        "taskIds": [],
+        "title": "Short sounds leaked past the reactive mute"
+      },
+      {
+        "files": [
+          {
+            "additions": 52,
+            "attentionClass": "canonical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": "install/distraction-space-hold-mute.lua",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-cut",
+              "c-key"
+            ],
+            "summary": "The hook and its metadata object.",
+            "taskIds": []
+          },
+          {
+            "additions": 21,
+            "attentionClass": "canonical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": "install/distraction-space-hold-mute.conf",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-cut",
+              "c-key"
+            ],
+            "summary": "The fragment that loads the script as a required feature.",
+            "taskIds": []
+          },
+          {
+            "additions": 109,
+            "attentionClass": "canonical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": "ds/wp.py",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-cut",
+              "c-key"
+            ],
+            "summary": "Paths, script rendering, the hold key through pw-metadata, the loaded check.",
+            "taskIds": []
+          }
+        ],
+        "kind": "step",
+        "ordinal": 2,
+        "rIds": [
+          "R2"
+        ],
+        "sourceRefs": [
+          "task1",
+          "r2",
+          "c-cut",
+          "c-key"
+        ],
+        "summary": "A Lua hook keyed on the plugin's application.id runs after WirePlumber's restore hook and sets mute from a hold key on the metadata object the script exports; the sandbox has no file access, so the key replaces a file flag. The script lives under the WirePlumber data directory, the only place 0.5 looks, and the fragment marks the feature required because an optional standalone feature never loads. The wp module owns paths, rendering, the key, and the loaded check.",
+        "taskIds": [
+          "fn-35-distraction-streams-start-muted-while.1"
+        ],
+        "title": "The hook, its key, and where WirePlumber finds it"
+      },
+      {
+        "files": [
+          {
+            "additions": 42,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 4,
+            "path": "ds/hold.py",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-cut",
+              "c-key",
+              "c-fix"
+            ],
+            "summary": "Key assertion in Mute.sync, deletion in Mute.stop, the streak log.",
+            "taskIds": []
+          },
+          {
+            "additions": 1,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 1,
+            "path": "ds/listener.py",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-fix"
+            ],
+            "summary": "Shutdown calls Mute.stop.",
+            "taskIds": []
+          },
+          {
+            "additions": 55,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 2,
+            "path": "ds/setup.py",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-cut",
+              "c-key"
+            ],
+            "summary": "Install and remove of the hook in the required order, one WirePlumber restart.",
+            "taskIds": []
+          }
+        ],
+        "kind": "step",
+        "ordinal": 3,
+        "rIds": [
+          "R3",
+          "R4"
+        ],
+        "sourceRefs": [
+          "task1",
+          "r3",
+          "r4",
+          "c-cut",
+          "c-key",
+          "c-fix"
+        ],
+        "summary": "Mute.sync asserts the key on hold start, hold end, listener start, and once per period, and Mute.stop deletes it at shutdown; an absent metadata object is logged once per streak. Setup writes the script before the fragment and restarts WirePlumber once; remove deletes the fragment before the script.",
+        "taskIds": [
+          "fn-35-distraction-streams-start-muted-while.1"
+        ],
+        "title": "The listener asserts the key; setup installs in order"
+      },
+      {
+        "files": [
+          {
+            "additions": 83,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 3,
+            "path": "ds/launch.py",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-cut",
+              "c-fix"
+            ],
+            "summary": "The libpulse-grammar parser and the strip on both forwards.",
+            "taskIds": []
+          }
+        ],
+        "kind": "step",
+        "ordinal": 4,
+        "rIds": [
+          "R1",
+          "R5"
+        ],
+        "sourceRefs": [
+          "task1",
+          "r1",
+          "r5",
+          "c-cut",
+          "c-fix"
+        ],
+        "summary": "Both forwarding paths to the work browser strip the plugin's application.id from the inherited property line with a parser that follows libpulse's grammar, preserving every other property.",
+        "taskIds": [
+          "fn-35-distraction-streams-start-muted-while.1"
+        ],
+        "title": "Forwards never carry the identity"
+      },
+      {
+        "files": [
+          {
+            "additions": 209,
+            "attentionClass": "canonical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": "tests/test_wp.py",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-cut",
+              "c-key"
+            ],
+            "summary": "Paths, key, and the Lua hook harness.",
+            "taskIds": []
+          },
+          {
+            "additions": 157,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 8,
+            "path": "tests/test_audio.py",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-cut",
+              "c-key",
+              "c-fix"
+            ],
+            "summary": "Key transitions, streak logs, failures, listener integration.",
+            "taskIds": []
+          },
+          {
+            "additions": 114,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 2,
+            "path": "tests/test_launch.py",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-cut",
+              "c-fix"
+            ],
+            "summary": "Parser table and the quoted identity on both forwards.",
+            "taskIds": []
+          },
+          {
+            "additions": 103,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 6,
+            "path": "tests/test_setup.py",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-cut",
+              "c-key"
+            ],
+            "summary": "Data-dir script, install and remove order.",
+            "taskIds": []
+          },
+          {
+            "additions": 4,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 4,
+            "path": "README.md",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-docs"
+            ],
+            "summary": "Mechanism and the setup restart.",
+            "taskIds": []
+          },
+          {
+            "additions": 3,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 1,
+            "path": "docs/internals.md",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-docs"
+            ],
+            "summary": "The live check record.",
+            "taskIds": []
+          }
+        ],
+        "kind": "step",
+        "ordinal": 5,
+        "rIds": [
+          "R6"
+        ],
+        "sourceRefs": [
+          "task1",
+          "r6",
+          "c-cut",
+          "c-key",
+          "c-fix",
+          "c-docs"
+        ],
+        "summary": "A Lua harness runs the hook with the sandbox's missing libraries nilled out; tests cover the key at every transition and per period, the reappeared object, the once-per-streak log, a pw-metadata failure, the missing-pactl regression, install and remove order, and the parser table on both forward paths. README and internals record the mechanism and the live check.",
+        "taskIds": [
+          "fn-35-distraction-streams-start-muted-while.1"
+        ],
+        "title": "Tests and docs"
+      },
+      {
+        "files": [
+          {
+            "additions": 25,
+            "attentionClass": "mechanical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": ".flow/memory/bug/integration/pulse-prop-stripped-with-split-altered-2026-09-06.md",
+            "rIds": [],
+            "sourceRefs": [
+              "diff"
+            ],
+            "summary": "Memory note.",
+            "taskIds": []
+          },
+          {
+            "additions": 24,
+            "attentionClass": "mechanical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": ".flow/memory/bug/runtime-errors/shared-cleanup-method-deleted-the-hold-2026-09-06.md",
+            "rIds": [],
+            "sourceRefs": [
+              "diff"
+            ],
+            "summary": "Memory note.",
+            "taskIds": []
+          },
+          {
+            "additions": 307,
+            "attentionClass": "mechanical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": ".flow/specs/fn-35-distraction-streams-start-muted-while.json",
+            "rIds": [],
+            "sourceRefs": [
+              "diff"
+            ],
+            "summary": "Spec state with three plan-review rounds.",
+            "taskIds": []
+          },
+          {
+            "additions": 60,
+            "attentionClass": "mechanical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": ".flow/specs/fn-35-distraction-streams-start-muted-while.md",
+            "rIds": [],
+            "sourceRefs": [
+              "diff"
+            ],
+            "summary": "The spec.",
+            "taskIds": []
+          },
+          {
+            "additions": 14,
+            "attentionClass": "mechanical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": ".flow/tasks/fn-35-distraction-streams-start-muted-while.1.json",
+            "rIds": [],
+            "sourceRefs": [
+              "diff"
+            ],
+            "summary": "Task state.",
+            "taskIds": []
+          },
+          {
+            "additions": 26,
+            "attentionClass": "mechanical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": ".flow/tasks/fn-35-distraction-streams-start-muted-while.1.md",
+            "rIds": [],
+            "sourceRefs": [
+              "diff"
+            ],
+            "summary": "Task receipt with the review stage lines.",
+            "taskIds": []
+          }
+        ],
+        "kind": "verify",
+        "ordinal": 6,
+        "rIds": [],
+        "sourceRefs": [
+          "spec",
+          "task1"
+        ],
+        "summary": "Spec, task receipt, and two memory notes from the review round.",
+        "taskIds": [
+          "fn-35-distraction-streams-start-muted-while.1"
+        ],
+        "title": "Flow records"
+      }
+    ],
+    "proof": [
+      {
+        "label": "Tests",
+        "sourceRefs": [
+          "task1"
+        ],
+        "value": "487 OK, 1 skipped (baseline 482)"
+      },
+      {
+        "label": "Review",
+        "sourceRefs": [
+          "task1"
+        ],
+        "value": "codex gpt-6-astra, 3 draws; round 2 SHIP"
+      },
+      {
+        "label": "Plan review",
+        "sourceRefs": [
+          "spec"
+        ],
+        "value": "codex gpt-6-astra, 3 rounds, SHIP"
+      },
+      {
+        "label": "Live",
+        "sourceRefs": [
+          "task1"
+        ],
+        "value": "muted at first sight with key, unmuted without, 1 WirePlumber restart"
+      },
+      {
+        "label": "Criteria",
+        "sourceRefs": [
+          "task1",
+          "r1",
+          "r2",
+          "r3",
+          "r4",
+          "r5",
+          "r6"
+        ],
+        "value": "R1 to R6 evidenced"
+      }
+    ],
+    "thesis": "A WirePlumber hook decides mute the moment a distraction-browser stream is created, from a hold key the listener keeps on the hook's own metadata object, so a short notification sound never leaks while the hold is on and a stale saved mute never carries onto the space."
+  },
+  "generatedAt": "2026-09-06T18:30:00Z",
+  "headSha": "8ee5d3553167b6aae48d37319931e32631b5a626",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "spec",
+      "kind": "spec",
+      "ref": "fn-35-distraction-streams-start-muted-while"
+    },
+    {
+      "id": "task1",
+      "kind": "task",
+      "ref": "fn-35-distraction-streams-start-muted-while.1"
+    },
+    {
+      "id": "r1",
+      "kind": "rid",
+      "ref": "R1"
+    },
+    {
+      "id": "r2",
+      "kind": "rid",
+      "ref": "R2"
+    },
+    {
+      "id": "r3",
+      "kind": "rid",
+      "ref": "R3"
+    },
+    {
+      "id": "r4",
+      "kind": "rid",
+      "ref": "R4"
+    },
+    {
+      "id": "r5",
+      "kind": "rid",
+      "ref": "R5"
+    },
+    {
+      "id": "r6",
+      "kind": "rid",
+      "ref": "R6"
+    },
+    {
+      "id": "diff",
+      "kind": "diff_metadata",
+      "ref": "49575052f680c6ba24e488cdb4913e1c08395f9b..8ee5d3553167b6aae48d37319931e32631b5a626"
+    },
+    {
+      "id": "c-cut",
+      "kind": "commit",
+      "ref": "58aff49d0d1564d9a8a60f8be84c7079d0edf20f"
+    },
+    {
+      "id": "c-key",
+      "kind": "commit",
+      "ref": "0b5c93127a2e56064a69028e19a515ed7be68350"
+    },
+    {
+      "id": "c-fix",
+      "kind": "commit",
+      "ref": "41bd24a9912011d70e08baf000e03f57df50a7a3"
+    },
+    {
+      "id": "c-docs",
+      "kind": "commit",
+      "ref": "46d5df1959d58b2fa1a718a384c1e1b9fbcd060c"
+    }
+  ],
+  "specId": "fn-35-distraction-streams-start-muted-while"
+}

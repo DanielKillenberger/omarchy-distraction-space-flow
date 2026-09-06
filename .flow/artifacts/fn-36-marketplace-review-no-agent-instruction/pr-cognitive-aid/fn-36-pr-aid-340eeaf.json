@@ -1,0 +1,319 @@
+{
+  "artifactId": "fn-36-pr-aid-340eeaf",
+  "baseSha": "bcfc76afbb3907a593234cf2618c45e40124bad9",
+  "changeWalkthrough": {
+    "groups": [
+      {
+        "files": [],
+        "kind": "problem",
+        "ordinal": 1,
+        "rIds": [],
+        "sourceRefs": [
+          "spec"
+        ],
+        "summary": "The installed checkout carried AGENTS.md and CLAUDE.md, which can change an agent's tool, approval, model, and repository-mutation behaviour inside the plugin directory. The privileged installer read its root destinations from environment variables, guarded them only against a user-writable ancestor, and handed them to the sudo transaction, so a path like /etc/shadow became an arbitrary privileged overwrite.",
+        "taskIds": [],
+        "title": "Two blocking findings from the marketplace review"
+      },
+      {
+        "files": [
+          {
+            "additions": 0,
+            "attentionClass": "canonical",
+            "changeType": "deleted",
+            "deletions": 52,
+            "path": "AGENTS.md",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-fix"
+            ],
+            "summary": "Removed from the distributed tree.",
+            "taskIds": []
+          },
+          {
+            "additions": 0,
+            "attentionClass": "canonical",
+            "changeType": "deleted",
+            "deletions": 17,
+            "path": "CLAUDE.md",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-fix"
+            ],
+            "summary": "Removed from the distributed tree.",
+            "taskIds": []
+          },
+          {
+            "additions": 2,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 0,
+            "path": ".gitignore",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-fix"
+            ],
+            "summary": "Ignores both filenames.",
+            "taskIds": []
+          },
+          {
+            "additions": 1,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 1,
+            "path": "README.md",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-fix"
+            ],
+            "summary": "Contributing note.",
+            "taskIds": []
+          }
+        ],
+        "kind": "step",
+        "ordinal": 2,
+        "rIds": [
+          "R1"
+        ],
+        "sourceRefs": [
+          "task1",
+          "r1",
+          "c-fix"
+        ],
+        "summary": "Both files are removed from the index and ignored; local working copies stay untracked. The README's contributing section says agent instruction files are kept outside the repository.",
+        "taskIds": [
+          "fn-36-marketplace-review-no-agent-instruction.1"
+        ],
+        "title": "Agent instruction files leave the repository"
+      },
+      {
+        "files": [
+          {
+            "additions": 61,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 13,
+            "path": "ds/setup.py",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-fix"
+            ],
+            "summary": "Constants, the pre-sudo exact check, the rendered transaction with its own check.",
+            "taskIds": []
+          }
+        ],
+        "kind": "step",
+        "ordinal": 3,
+        "rIds": [
+          "R2",
+          "R3"
+        ],
+        "sourceRefs": [
+          "task1",
+          "r2",
+          "r3",
+          "c-fix"
+        ],
+        "summary": "The wrapper and sudoers destinations are module constants with no environment override. install and remove refuse, before sudo, a destination that is not exactly canonical and name the path; the writable-ancestor check stays as defence in depth. The root transaction is rendered from the same constants at call time and refuses a non-canonical argument before reading the payload or creating, staging, or renaming anything.",
+        "taskIds": [
+          "fn-36-marketplace-review-no-agent-instruction.1"
+        ],
+        "title": "Fixed root destinations on both sides of sudo"
+      },
+      {
+        "files": [
+          {
+            "additions": 108,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 11,
+            "path": "tests/test_setup.py",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-fix"
+            ],
+            "summary": "In-process destination patching and the four new tests.",
+            "taskIds": []
+          },
+          {
+            "additions": 6,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 3,
+            "path": "tests/test_clone.py",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-fix"
+            ],
+            "summary": "Patches the constants instead of the environment.",
+            "taskIds": []
+          }
+        ],
+        "kind": "step",
+        "ordinal": 4,
+        "rIds": [
+          "R4"
+        ],
+        "sourceRefs": [
+          "task1",
+          "r4",
+          "c-fix"
+        ],
+        "summary": "Tests patch the module's constants in-process and, for the CLI subprocess, through a sitecustomize; the environment variables are gone from the fixtures. Four new red-first tests: the environment never moves the destinations, the CLI ignores the old variables, a non-canonical destination stops setup before sudo, and the root transaction refuses a non-canonical path before touching anything.",
+        "taskIds": [
+          "fn-36-marketplace-review-no-agent-instruction.1"
+        ],
+        "title": "Tests reach the sandbox only in-process"
+      },
+      {
+        "files": [
+          {
+            "additions": 78,
+            "attentionClass": "mechanical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": ".flow/specs/fn-36-marketplace-review-no-agent-instruction.json",
+            "rIds": [],
+            "sourceRefs": [
+              "diff"
+            ],
+            "summary": "Spec state.",
+            "taskIds": []
+          },
+          {
+            "additions": 44,
+            "attentionClass": "mechanical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": ".flow/specs/fn-36-marketplace-review-no-agent-instruction.md",
+            "rIds": [],
+            "sourceRefs": [
+              "diff"
+            ],
+            "summary": "The spec.",
+            "taskIds": []
+          },
+          {
+            "additions": 14,
+            "attentionClass": "mechanical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": ".flow/tasks/fn-36-marketplace-review-no-agent-instruction.1.json",
+            "rIds": [],
+            "sourceRefs": [
+              "diff"
+            ],
+            "summary": "Task state.",
+            "taskIds": []
+          },
+          {
+            "additions": 22,
+            "attentionClass": "mechanical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": ".flow/tasks/fn-36-marketplace-review-no-agent-instruction.1.md",
+            "rIds": [],
+            "sourceRefs": [
+              "diff"
+            ],
+            "summary": "Task receipt with the review stage lines.",
+            "taskIds": []
+          }
+        ],
+        "kind": "verify",
+        "ordinal": 5,
+        "rIds": [],
+        "sourceRefs": [
+          "spec",
+          "task1"
+        ],
+        "summary": "Spec and task receipt.",
+        "taskIds": [
+          "fn-36-marketplace-review-no-agent-instruction.1"
+        ],
+        "title": "Flow records"
+      }
+    ],
+    "proof": [
+      {
+        "label": "Tests",
+        "sourceRefs": [
+          "task1"
+        ],
+        "value": "455 OK, 1 skipped (baseline 451); 4 new red-first tests"
+      },
+      {
+        "label": "Review",
+        "sourceRefs": [
+          "task1"
+        ],
+        "value": "codex gpt-6-astra, 3 draws, SHIP, 0 findings"
+      },
+      {
+        "label": "Criteria",
+        "sourceRefs": [
+          "task1",
+          "r1",
+          "r2",
+          "r3",
+          "r4"
+        ],
+        "value": "R1 to R4 evidenced"
+      }
+    ],
+    "thesis": "Both marketplace findings at bcfc76a are closed: the agent instruction files leave the repository Omarchy installs, and the privileged installer's two root destinations are fixed constants validated exactly on both sides of sudo, so no environment variable can steer a root write."
+  },
+  "generatedAt": "2026-09-06T19:20:00Z",
+  "headSha": "340eeafd6dc5b0511fefd2a04f90d6166ee690d8",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "spec",
+      "kind": "spec",
+      "ref": "fn-36-marketplace-review-no-agent-instruction"
+    },
+    {
+      "id": "task1",
+      "kind": "task",
+      "ref": "fn-36-marketplace-review-no-agent-instruction.1"
+    },
+    {
+      "id": "r1",
+      "kind": "rid",
+      "ref": "R1"
+    },
+    {
+      "id": "r2",
+      "kind": "rid",
+      "ref": "R2"
+    },
+    {
+      "id": "r3",
+      "kind": "rid",
+      "ref": "R3"
+    },
+    {
+      "id": "r4",
+      "kind": "rid",
+      "ref": "R4"
+    },
+    {
+      "id": "diff",
+      "kind": "diff_metadata",
+      "ref": "bcfc76afbb3907a593234cf2618c45e40124bad9..340eeafd6dc5b0511fefd2a04f90d6166ee690d8"
+    },
+    {
+      "id": "c-fix",
+      "kind": "commit",
+      "ref": "57255e5ba0767d3ae4a667870d27ea48e3a58c14"
+    }
+  ],
+  "specId": "fn-36-marketplace-review-no-agent-instruction"
+}
