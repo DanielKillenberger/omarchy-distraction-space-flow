@@ -50,10 +50,45 @@
       "task": "fn-36-marketplace-review-no-agent-instruction.1",
       "timestamp": "2026-09-06T21:14:02.188665Z",
       "verdict": "SHIP"
+    },
+    {
+      "artifact_sha256": "c193636726420b5c2070e7e7e052fa87e69db63c0666e20ab502c1888c097735",
+      "backend": "codex",
+      "base_sha": "bcfc76afbb3907a593234cf2618c45e40124bad9",
+      "counter_kind": "impl",
+      "effort": "medium",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "findings_digest": {
+        "backend": "codex",
+        "digest_truncated": false,
+        "items": [],
+        "reviewKind": "implementation"
+      },
+      "forced": false,
+      "hash_epoch": 1,
+      "head_sha": "061e44de3928a84585f9975fd53a9f0d96868797",
+      "head_sha_observed": true,
+      "kind": "impl",
+      "model": "gpt-6-astra",
+      "outcome": "verdict",
+      "output_bytes": 952,
+      "output_sha256": "ee1c1e140dbb770b079c8083670c70e5fbd78bb695ab382227fbb16577e6c418",
+      "reservation_id": "9d7960f8caae42f9bf7df621639a408e",
+      "round_consumed": true,
+      "scope": "impl:fn-36-marketplace-review-no-agent-instruction.1",
+      "superseded_by": null,
+      "task": "fn-36-marketplace-review-no-agent-instruction.1",
+      "timestamp": "2026-09-06T21:57:20.281074Z",
+      "verdict": "SHIP"
     }
   ],
   "review_hash_epoch": {
-    "impl:fn-36-marketplace-review-no-agent-instruction.1": 1
+    "impl:fn-36-marketplace-review-no-agent-instruction.1": 2
   },
   "review_pending_rounds": {},
   "review_reservations": {},
@@ -74,5 +109,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-09-06T21:15:36.635529Z"
+  "updated_at": "2026-09-06T21:57:20.283447Z"
 }

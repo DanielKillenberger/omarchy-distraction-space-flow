@@ -16,6 +16,7 @@ Inherited flake, not fixed here: `tests/test_net.py::test_timeout_still_kills_de
 
 stage: impl-review - ran [round 1 SHIP] (codex fan-out, gpt-6-astra medium, three draws all SHIP, rid f7a274ab84e9453cab73c7fc780eaa45) (model: codex gpt-6-astra medium)
 stage: plan-sync - skipped(config: planSync.enabled != true)
+stage: impl-review - ran [round 2 SHIP at 061e44d: .flow untracking and README entries, 0 findings, R1a met] (model: codex gpt-6-astra medium)
 ## Evidence
 - Commits: 57255e5ba0767d3ae4a667870d27ea48e3a58c14
 - Tests: baseline: green - PATH=/usr/bin:$PATH python3 -m unittest discover -s tests (451 tests, rc 0, pre-edit), PATH=/usr/bin:$PATH python3 -m unittest discover -s tests (run 1 on 57255e5: 455 tests, rc 1 - single error in tests/test_net.py test_timeout_still_kills_descendant_after_parent_exits, an inherited /proc/<pid>/stat read race in files this task does not touch; reproduces 1 in 3 isolated runs), PATH=/usr/bin:$PATH python3 -m unittest discover -s tests (run 2 on 57255e5: 455 tests, rc 0, OK skipped=1 - receipted), PATH=/usr/bin:$PATH python3 -m unittest tests.test_setup tests.test_clone tests.test_net (focused, 91 tests), red-first: the four new tests fail against the pre-change ds/setup.py for the intended reasons (env override moves the paths; no refusal; no _transaction_script)
