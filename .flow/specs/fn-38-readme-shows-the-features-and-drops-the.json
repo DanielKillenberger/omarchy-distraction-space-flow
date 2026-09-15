@@ -284,7 +284,7 @@
     "impl:fn-38-readme-shows-the-features-and-drops-the.2": 0
   },
   "spec_path": ".flow/specs/fn-38-readme-shows-the-features-and-drops-the.md",
-  "status": "open",
+  "status": "done",
   "title": "README shows the features and drops the clutter",
   "tracker": {
     "baseHashFlow": null,
@@ -297,5 +297,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-09-15T15:22:09.419080Z"
+  "updated_at": "2026-09-15T15:43:47.743039Z"
 }
