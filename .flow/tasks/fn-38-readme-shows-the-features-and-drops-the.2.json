@@ -1,0 +1,16 @@
+{
+  "assignee": null,
+  "claim_note": "",
+  "claimed_at": null,
+  "created_at": "2026-09-15T15:08:51.435571Z",
+  "depends_on": [
+    "fn-38-readme-shows-the-features-and-drops-the.1"
+  ],
+  "id": "fn-38-readme-shows-the-features-and-drops-the.2",
+  "priority": null,
+  "spec": "fn-38-readme-shows-the-features-and-drops-the",
+  "spec_path": ".flow/tasks/fn-38-readme-shows-the-features-and-drops-the.2.md",
+  "status": "todo",
+  "title": "The site-block feature shows the HTTPS banner, not the block page",
+  "updated_at": "2026-09-15T15:08:51.435571Z"
+}
