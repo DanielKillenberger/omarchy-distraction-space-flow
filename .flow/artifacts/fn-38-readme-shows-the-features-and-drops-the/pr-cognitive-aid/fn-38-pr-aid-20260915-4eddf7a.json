@@ -1,0 +1,609 @@
+{
+  "artifactId": "fn-38-pr-aid-20260915-4eddf7a",
+  "baseSha": "cdc7dadcf7b4c7608a587cceafac08631822908a",
+  "changeWalkthrough": {
+    "groups": [
+      {
+        "files": [],
+        "kind": "problem",
+        "ordinal": 1,
+        "rIds": [],
+        "sourceRefs": [
+          "spec"
+        ],
+        "summary": "The README was 215 lines of reference-grade prose. The opening paragraph ran ten sentences and mixed the pitch with the systemd slice name and the workspace identifier, Install carried the complete dependency list, and \"What it does\" was eight dense paragraphs down to nftables sets and socket2 events. The features that would sell the plugin were in there, but a reader had to mine for them.",
+        "taskIds": [],
+        "title": "A reference manual on the front page"
+      },
+      {
+        "files": [],
+        "kind": "principle",
+        "ordinal": 2,
+        "rIds": [],
+        "sourceRefs": [
+          "spec"
+        ],
+        "summary": "A person landing on the repository page should be able to tell in about a minute what the plugin does and whether they want it. The reference material stays in the repository: it moves out of the README into the docs, so the README becomes the pitch and the quick path in, and the docs stay the complete account.",
+        "taskIds": [],
+        "title": "The README pitches, the docs keep the full account"
+      },
+      {
+        "files": [
+          {
+            "additions": 34,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 165,
+            "path": "README.md",
+            "rIds": [
+              "R1",
+              "R2",
+              "R3",
+              "R11",
+              "R12"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-c1",
+              "c-c2",
+              "c-c3",
+              "c-c4",
+              "c-c5",
+              "c-c6",
+              "rid-R1",
+              "rid-R2",
+              "rid-R3",
+              "rid-R11",
+              "rid-R12"
+            ],
+            "summary": "Rewritten as the pitch: one sentence, the feature list with its screenshots, how it works, install, use, configure, remove, contributing, and links; the site-block line shows the HTTPS banner; sections that gave material up link to where it went.",
+            "taskIds": []
+          }
+        ],
+        "kind": "step",
+        "ordinal": 3,
+        "rIds": [
+          "R1",
+          "R2",
+          "R3",
+          "R11",
+          "R12"
+        ],
+        "sourceRefs": [
+          "task-1",
+          "task-2",
+          "c-c1",
+          "c-c3",
+          "c-c4",
+          "c-c5",
+          "c-c6",
+          "rid-R1",
+          "rid-R2",
+          "rid-R3",
+          "rid-R11",
+          "rid-R12"
+        ],
+        "summary": "The README opens with the title and one sentence saying the plugin makes distractions hard to reach, with no image above the feature list. The seven-item list puts the site block and the lock first, then the distraction space, links, notifications, sounds, and the come-back summary. The site-block line describes what a listed site typed into the work browser does over HTTPS: the page fails to load and a \"Blocked here\" banner offers to open it in the space, and the known-gaps sentence scopes the banner-only limit to HTTPS. It is 83 lines; the keys table and the bar-widget paragraph are unchanged; the Upgrading from 2.x section and the pre-2.1.0 id note are dropped.",
+        "taskIds": [
+          "fn-38-readme-shows-the-features-and-drops-the.1",
+          "fn-38-readme-shows-the-features-and-drops-the.2"
+        ],
+        "title": "The README leads with the friction"
+      },
+      {
+        "files": [
+          {
+            "additions": 43,
+            "attentionClass": "canonical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": "docs/CONTRIBUTING.md",
+            "rIds": [
+              "R4"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-c1",
+              "rid-R4"
+            ],
+            "summary": "New file: the offline suite, the mise caveat, CI, the qmllint recipe, and the flow-next sister-repository setup, moved out of the README.",
+            "taskIds": []
+          },
+          {
+            "additions": 43,
+            "attentionClass": "canonical",
+            "changeType": "copied",
+            "deletions": 97,
+            "path": "docs/reference.md",
+            "rIds": [
+              "R4",
+              "R11"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-c1",
+              "rid-R4",
+              "rid-R11"
+            ],
+            "summary": "New file, detected by Git as a copy of the old README: requirements, what setup writes, pasted-install migration, removal, the full feature account, limits, the config keys, and the commands.",
+            "taskIds": []
+          }
+        ],
+        "kind": "step",
+        "ordinal": 4,
+        "rIds": [
+          "R4",
+          "R11"
+        ],
+        "sourceRefs": [
+          "task-1",
+          "c-c1",
+          "rid-R4",
+          "rid-R11"
+        ],
+        "summary": "docs/reference.md takes the requirements, everything setup writes, moving a pasted 3.x install, removal, the full feature account, limits, the config key table, and the command table. docs/CONTRIBUTING.md takes the offline-suite notes, the mise caveat, CI, the qmllint recipe, and the flow-next sister-repository setup.",
+        "taskIds": [
+          "fn-38-readme-shows-the-features-and-drops-the.1"
+        ],
+        "title": "Reference material moves into the docs"
+      },
+      {
+        "files": [
+          {
+            "additions": 0,
+            "attentionClass": "canonical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": "docs/images/blocked-banner.png",
+            "rIds": [
+              "R7",
+              "R12"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-c5",
+              "rid-R7",
+              "rid-R12"
+            ],
+            "summary": "The \"Blocked here\" banner a listed site raises when opened over HTTPS outside the distraction space; the maintainer-approved capture.",
+            "taskIds": []
+          },
+          {
+            "additions": 0,
+            "attentionClass": "canonical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": "docs/images/distraction-space.jpg",
+            "rIds": [
+              "R7",
+              "R8",
+              "R9a",
+              "R10"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-c4",
+              "rid-R7",
+              "rid-R8",
+              "rid-R9a",
+              "rid-R10"
+            ],
+            "summary": "The maintainer's redacted, approved capture of the distraction space.",
+            "taskIds": []
+          },
+          {
+            "additions": 0,
+            "attentionClass": "canonical",
+            "changeType": "copied",
+            "deletions": 0,
+            "path": "docs/images/held-count.png",
+            "rIds": [
+              "R7",
+              "R8",
+              "R9",
+              "R10"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-c2",
+              "rid-R7",
+              "rid-R8",
+              "rid-R9",
+              "rid-R10"
+            ],
+            "summary": "The bar's held-notification count; a byte copy of the already-public preview.png.",
+            "taskIds": []
+          },
+          {
+            "additions": 0,
+            "attentionClass": "canonical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": "docs/images/lock-prompt.png",
+            "rIds": [
+              "R7",
+              "R8",
+              "R9",
+              "R10"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-c2",
+              "rid-R7",
+              "rid-R8",
+              "rid-R9",
+              "rid-R10"
+            ],
+            "summary": "The typed lock-purpose prompt.",
+            "taskIds": []
+          },
+          {
+            "additions": 0,
+            "attentionClass": "canonical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": "docs/images/opened-banner.png",
+            "rIds": [
+              "R7",
+              "R8",
+              "R9",
+              "R10"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-c2",
+              "rid-R7",
+              "rid-R8",
+              "rid-R9",
+              "rid-R10"
+            ],
+            "summary": "The opened banner shown when a link opens in the distraction space.",
+            "taskIds": []
+          },
+          {
+            "additions": 0,
+            "attentionClass": "canonical",
+            "changeType": "added",
+            "deletions": 0,
+            "path": "docs/images/unlock-prompt.png",
+            "rIds": [
+              "R7",
+              "R8",
+              "R9",
+              "R10"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-c2",
+              "rid-R7",
+              "rid-R8",
+              "rid-R9",
+              "rid-R10"
+            ],
+            "summary": "The typed unlock-reason prompt.",
+            "taskIds": []
+          }
+        ],
+        "kind": "step",
+        "ordinal": 5,
+        "rIds": [
+          "R7",
+          "R8",
+          "R9",
+          "R9a",
+          "R10",
+          "R12"
+        ],
+        "sourceRefs": [
+          "task-1",
+          "task-2",
+          "c-c2",
+          "c-c4",
+          "c-c5",
+          "rid-R7",
+          "rid-R8",
+          "rid-R9",
+          "rid-R9a",
+          "rid-R10",
+          "rid-R12"
+        ],
+        "summary": "docs/images/ gets the \"Blocked here\" banner, the lock-purpose and unlock-reason prompts, the opened banner, the held count, and the distraction space, each placed beside the feature it illustrates. The banner capture replaced the earlier block-page capture because a listed site typed into the work browser is reached over HTTPS, where the banner is what a person sees; the block page is served only over plain HTTP. The distraction-space image is the maintainer's redacted, approved capture of the real space; held-count.png is a byte copy of the already-public preview.png. Each image was committed only after the maintainer approved it.",
+        "taskIds": [
+          "fn-38-readme-shows-the-features-and-drops-the.1",
+          "fn-38-readme-shows-the-features-and-drops-the.2"
+        ],
+        "title": "Six approved screenshots beside their features"
+      },
+      {
+        "files": [
+          {
+            "additions": 4,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 4,
+            "path": "docs/internals.md",
+            "rIds": [
+              "R5"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-c1",
+              "c-c2",
+              "rid-R5"
+            ],
+            "summary": "Opening sentence updated; links into the flow-state directory become plain text.",
+            "taskIds": []
+          },
+          {
+            "additions": 1,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 1,
+            "path": "docs/marketplace-submission.md",
+            "rIds": [
+              "R5"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-c1",
+              "rid-R5"
+            ],
+            "summary": "Points at docs/reference.md for dependencies and setup commands.",
+            "taskIds": []
+          }
+        ],
+        "kind": "step",
+        "ordinal": 6,
+        "rIds": [
+          "R5"
+        ],
+        "sourceRefs": [
+          "task-1",
+          "c-c1",
+          "c-c2",
+          "rid-R5"
+        ],
+        "summary": "internals.md changes its opening sentence and keeps its sentences about the flow-state directory but no longer links into it, because that directory is a local symlink and the links break on GitHub. The marketplace notes point at the reference doc for dependencies and setup commands.",
+        "taskIds": [
+          "fn-38-readme-shows-the-features-and-drops-the.1"
+        ],
+        "title": "The other docs point at the new homes"
+      },
+      {
+        "files": [],
+        "kind": "kept",
+        "ordinal": 7,
+        "rIds": [],
+        "sourceRefs": [
+          "spec",
+          "task-2"
+        ],
+        "summary": "No code, tests, manifest, or Hyprland snippets change. The keys table and the config defaults are copied, not reworded. docs/reference.md keeps the technical account of the block page and the nudges.block_page key. No recordings or animated images, and no screenshots in the reference doc or the contributing file.",
+        "taskIds": [],
+        "title": "Deliberately unchanged"
+      },
+      {
+        "files": [],
+        "kind": "verify",
+        "ordinal": 8,
+        "rIds": [
+          "R6"
+        ],
+        "sourceRefs": [
+          "task-1",
+          "task-2",
+          "review",
+          "review-2",
+          "completion",
+          "c-c4",
+          "rid-R6"
+        ],
+        "summary": "The offline suite ran green at 8efbe07, 517 tests with one skip, and the gate classified the cumulative diff as docs-only, including the two task .2 commits after it. A link checker resolved all 37 relative links, images, and anchors in the README and the four docs at 8efbe07; after task .2 every README link into docs/ resolves and the removed image has no remaining reference. Task .1's cursor review on gpt-5.6-sol-high returned NEEDS_WORK in round 1 on a spec contradiction about held-count.png, resolved by amending R9; round 2 was forced once on the maintainer's explicit authorization with the diff unchanged and returned SHIP. Task .2's review on the same model returned NEEDS_WORK in round 1 because the gap sentence covered HTTP sites too, fixed in 4eddf7a, and SHIP in round 2. The completion review returned SHIP in round 1. The pre-existing P3, a redundant chmod line in Install, is recorded as a follow-up.",
+        "taskIds": [
+          "fn-38-readme-shows-the-features-and-drops-the.1",
+          "fn-38-readme-shows-the-features-and-drops-the.2"
+        ],
+        "title": "How this was checked"
+      }
+    ],
+    "proof": [
+      {
+        "label": "Full suite",
+        "sourceRefs": [
+          "task-1",
+          "task-2",
+          "c-c4"
+        ],
+        "value": "517 tests OK, 1 skipped at 8efbe07; the later commits are docs-only"
+      },
+      {
+        "label": "Link check",
+        "sourceRefs": [
+          "task-1",
+          "task-2",
+          "rid-R5"
+        ],
+        "value": "37 relative links, images, and anchors resolve at 8efbe07; README links into docs/ resolve after task .2"
+      },
+      {
+        "label": "README length",
+        "sourceRefs": [
+          "task-1",
+          "spec",
+          "rid-R3"
+        ],
+        "value": "83 lines, down from 215"
+      },
+      {
+        "label": "Cross-model review",
+        "sourceRefs": [
+          "review",
+          "review-2",
+          "completion",
+          "task-1",
+          "task-2"
+        ],
+        "value": "cursor gpt-5.6-sol-high: task .1 SHIP in round 2 (forced once on maintainer authorization), task .2 SHIP in round 2, completion review SHIP in round 1"
+      },
+      {
+        "label": "Acceptance criteria",
+        "sourceRefs": [
+          "task-1",
+          "task-2",
+          "rid-R1",
+          "rid-R2",
+          "rid-R3",
+          "rid-R4",
+          "rid-R5",
+          "rid-R6",
+          "rid-R7",
+          "rid-R8",
+          "rid-R9",
+          "rid-R9a",
+          "rid-R10",
+          "rid-R11",
+          "rid-R12"
+        ],
+        "value": "R1 to R12 and R9a claimed by the two done tasks"
+      }
+    ],
+    "thesis": "The README was a 215-line reference manual; a visitor had to mine it to learn what the plugin does. It is now an 83-line pitch: one sentence that the plugin makes distractions hard to reach, seven features led by the site block and the lock, six maintainer-approved screenshots beside their features, and a short Install section. The site-block line shows what a listed site does over HTTPS, a \"Blocked here\" banner, since browsers reach nearly every site that way. Every reference fact the README held moved to docs/reference.md or docs/CONTRIBUTING.md, except the 2.x upgrade section and the pre-2.1.0 id note, which are dropped. No code, test, or manifest changes."
+  },
+  "generatedAt": "2026-09-15T15:29:30Z",
+  "headSha": "4eddf7a623eeeb04c5e9a4ae9b6bfc449452d3c9",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "spec",
+      "kind": "spec",
+      "ref": "fn-38-readme-shows-the-features-and-drops-the"
+    },
+    {
+      "id": "task-1",
+      "kind": "task",
+      "ref": "fn-38-readme-shows-the-features-and-drops-the.1"
+    },
+    {
+      "id": "task-2",
+      "kind": "task",
+      "ref": "fn-38-readme-shows-the-features-and-drops-the.2"
+    },
+    {
+      "id": "rid-R1",
+      "kind": "rid",
+      "ref": "R1"
+    },
+    {
+      "id": "rid-R2",
+      "kind": "rid",
+      "ref": "R2"
+    },
+    {
+      "id": "rid-R3",
+      "kind": "rid",
+      "ref": "R3"
+    },
+    {
+      "id": "rid-R4",
+      "kind": "rid",
+      "ref": "R4"
+    },
+    {
+      "id": "rid-R5",
+      "kind": "rid",
+      "ref": "R5"
+    },
+    {
+      "id": "rid-R6",
+      "kind": "rid",
+      "ref": "R6"
+    },
+    {
+      "id": "rid-R7",
+      "kind": "rid",
+      "ref": "R7"
+    },
+    {
+      "id": "rid-R8",
+      "kind": "rid",
+      "ref": "R8"
+    },
+    {
+      "id": "rid-R9",
+      "kind": "rid",
+      "ref": "R9"
+    },
+    {
+      "id": "rid-R9a",
+      "kind": "rid",
+      "ref": "R9a"
+    },
+    {
+      "id": "rid-R10",
+      "kind": "rid",
+      "ref": "R10"
+    },
+    {
+      "id": "rid-R11",
+      "kind": "rid",
+      "ref": "R11"
+    },
+    {
+      "id": "rid-R12",
+      "kind": "rid",
+      "ref": "R12"
+    },
+    {
+      "id": "diff",
+      "kind": "diff_metadata",
+      "ref": "cdc7dadcf7b4c7608a587cceafac08631822908a..4eddf7a623eeeb04c5e9a4ae9b6bfc449452d3c9"
+    },
+    {
+      "id": "c-c1",
+      "kind": "commit",
+      "ref": "553713b81c89acd7a8edae428e3f58b99fbd55bc"
+    },
+    {
+      "id": "c-c2",
+      "kind": "commit",
+      "ref": "2321b79628f4ad17d5ee993f7bce5ec63095d26c"
+    },
+    {
+      "id": "c-c3",
+      "kind": "commit",
+      "ref": "986334aa01f36945de9fe8ac11f4d4990af6607d"
+    },
+    {
+      "id": "c-c4",
+      "kind": "commit",
+      "ref": "8efbe07d45bd9780a029fad61870016f1fedcaaa"
+    },
+    {
+      "id": "c-c5",
+      "kind": "commit",
+      "ref": "2b4a18b28f9798641d529af543a95c3d804356f3"
+    },
+    {
+      "id": "c-c6",
+      "kind": "commit",
+      "ref": "4eddf7a623eeeb04c5e9a4ae9b6bfc449452d3c9"
+    },
+    {
+      "id": "review",
+      "kind": "review_receipt",
+      "ref": "/tmp/impl-review-receipt-3a5b6c667e92-fn-38-readme-shows-the-features-and-drops-the.1.json"
+    },
+    {
+      "id": "review-2",
+      "kind": "review_receipt",
+      "ref": "/tmp/impl-review-receipt-3a5b6c667e92-fn-38-readme-shows-the-features-and-drops-the.2.json"
+    },
+    {
+      "id": "completion",
+      "kind": "review_receipt",
+      "ref": "/tmp/completion-review-receipt-fn-38-readme-shows-the-features-and-drops-the.json"
+    }
+  ],
+  "specId": "fn-38-readme-shows-the-features-and-drops-the",
+  "supersedesArtifactId": "fn-38-pr-aid-20260915-8efbe07"
+}
