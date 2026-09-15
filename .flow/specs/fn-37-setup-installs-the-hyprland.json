@@ -131,7 +131,7 @@
     "impl:fn-37-setup-installs-the-hyprland.1": 0
   },
   "spec_path": ".flow/specs/fn-37-setup-installs-the-hyprland.md",
-  "status": "open",
+  "status": "done",
   "title": "Setup installs the Hyprland configuration",
   "tracker": {
     "baseHashFlow": null,
@@ -144,5 +144,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-09-15T10:18:39.093895Z"
+  "updated_at": "2026-09-15T12:11:38.793069Z"
 }
