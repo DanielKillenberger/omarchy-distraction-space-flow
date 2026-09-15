@@ -10,7 +10,7 @@ TBD
 Every R-ID in the parent spec's ## Acceptance Criteria is satisfied; judge this task against the spec's criteria directly.
 
 ## Done summary
-Merged to main through DanielKillenberger/omarchy-distraction-space#24 on 2026-09-15; CI green on the PR head; the whole stack (#28, #24, #25, #27, #29) landed in that order and main was bumped to 3.1.0 at d26faef.
+Merged to main through DanielKillenberger/omarchy-distraction-space#24 on 2026-09-15; CI green on the PR head; the whole stack (#28, #24, #25, #27, #29) landed in that order and main was bumped to 3.1.0 at b7fa0a7 (history squashed to one commit per PR after the merge).
 ## Evidence
 - Commits:
 - Tests:
