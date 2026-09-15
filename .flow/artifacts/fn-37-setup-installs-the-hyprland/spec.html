@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fn-37 · Setup installs the Hyprland configuration</title>
+<style>
+:root {
+  --bg: #0c0b09; --panel: #14120e; --panel-2: #1a1712;
+  --line: #2c2719; --line-soft: #211d14;
+  --ink: #e8e2d4; --dim: #9a917c; --faint: #645d4c;
+  --amber: #ffb454; --amber-deep: #cc8b33;
+  --green: #87d96c; --red: #f07178; --cyan: #5ccfe6; --violet: #c9a7f5;
+  --mono: "Berkeley Mono", "JetBrains Mono", "SF Mono", ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--ink); font-family: var(--mono); font-size: 14px; line-height: 1.65; }
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 999;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 2px, rgba(255,180,84,0.012) 2px 4px),
+    radial-gradient(ellipse 120% 60% at 50% -10%, rgba(255,180,84,0.05), transparent 60%);
+}
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 28px 32px 64px; }
+.kicker { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--amber); }
+.kicker .sep { color: var(--faint); margin: 0 8px; }
+h1 { font-size: 26px; font-weight: 600; letter-spacing: .01em; margin: 8px 0 18px; line-height: 1.25; }
+h1 .id { color: var(--amber); margin-right: 10px; }
+.dials { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--line); background: var(--panel); margin-bottom: 26px; }
+.dial { padding: 12px 16px; border-right: 1px solid var(--line-soft); }
+.dial:last-child { border-right: 0; }
+.dial .v { font-size: 19px; font-weight: 700; color: var(--ink); }
+.dial .v.amber { color: var(--amber); } .dial .v.green { color: var(--green); } .dial .v.red { color: var(--red); } .dial .v.cyan { color: var(--cyan); }
+.dial .c { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); margin-top: 2px; }
+nav.rail { position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; gap: 0 22px; padding: 10px 0; margin-bottom: 26px;
+  background: rgba(12,11,9,0.86); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+nav.rail a { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--dim); }
+nav.rail a:hover { color: var(--amber); text-decoration: none; }
+section { margin: 0 0 38px; opacity: 0; animation: rise .5s ease forwards; }
+section:nth-of-type(1){animation-delay:.05s} section:nth-of-type(2){animation-delay:.10s} section:nth-of-type(3){animation-delay:.15s}
+section:nth-of-type(4){animation-delay:.20s} section:nth-of-type(5){animation-delay:.25s} section:nth-of-type(6){animation-delay:.30s}
+section:nth-of-type(7){animation-delay:.35s} section:nth-of-type(8){animation-delay:.40s}
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.shead { display: flex; align-items: baseline; gap: 14px; border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-bottom: 16px; }
+.shead .n { color: var(--amber); font-weight: 700; font-size: 13px; }
+.shead h2 { margin: 0; font-size: 17px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+.shead .note { margin-left: auto; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
+.tldr { font-family: var(--serif); font-size: 20px; line-height: 1.6; max-width: 920px; margin: 0 0 18px; color: var(--ink); }
+.tldr strong { color: var(--amber); font-weight: 600; } .tldr em { color: var(--cyan); font-style: italic; }
+.thesis { border: 1px solid var(--line); border-left: 3px solid var(--amber); background: var(--panel); padding: 12px 16px; color: var(--dim); max-width: 920px; }
+.thesis b { color: var(--ink); }
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+td { padding: 10px; border-bottom: 1px solid var(--line-soft); vertical-align: top; color: var(--dim); }
+tr:hover td { color: var(--ink); background: #1c170d; }
+td.rid { color: var(--amber); font-weight: 700; white-space: nowrap; width: 54px; }
+td.chk { width: 34px; }
+td.chk input { accent-color: #ffb454; }
+tr.done td { color: var(--faint); text-decoration: line-through; }
+tr.done td.rid { text-decoration: none; }
+details summary { cursor: pointer; color: var(--ink); }
+details summary::marker { color: var(--amber); }
+details p { margin: 8px 0 0; }
+.err { color: var(--faint); font-size: 12.5px; margin-top: 6px; }
+.err b { color: var(--red); font-weight: 600; letter-spacing: .1em; font-size: 10px; text-transform: uppercase; }
+.tagchip { display: inline-block; border: 1px solid var(--line); padding: 0 6px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; line-height: 18px; }
+.tagchip.user { color: var(--green); border-color: rgba(135,217,108,.4); }
+.tagchip.paraphrase { color: var(--cyan); border-color: rgba(92,207,230,.4); }
+.tagchip.inferred { color: var(--red); border-color: rgba(240,113,120,.4); }
+.archgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 16px; }
+.box { border: 1px solid var(--line); background: var(--panel); padding: 12px 14px; position: relative; }
+.box .lbl { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); margin-bottom: 4px; }
+.box .t { color: var(--ink); font-weight: 600; margin-bottom: 4px; }
+.box p { margin: 0; color: var(--dim); font-size: 12.5px; }
+.box::after { content: "→"; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); color: var(--amber-deep); font-size: 16px; }
+.box:last-child::after { content: none; }
+.ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); background: var(--panel); }
+.rung { padding: 12px 14px; border-right: 1px solid var(--line-soft); }
+.rung:last-child { border-right: 0; }
+.rung .lbl { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 4px; }
+.rung.ok .lbl { color: var(--green); } .rung.skip .lbl { color: var(--amber); } .rung.stop .lbl { color: var(--red); }
+.rung p { margin: 0; color: var(--dim); font-size: 12.5px; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.card { border: 1px solid var(--line); background: var(--panel); padding: 12px 14px; }
+.card.amber { border-left: 3px solid var(--amber); } .card.red { border-left: 3px solid var(--red); } .card.cyan { border-left: 3px solid var(--cyan); } .card.green { border-left: 3px solid var(--green); }
+.card .lbl { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); margin-bottom: 6px; }
+.card ul { margin: 0; padding-left: 18px; color: var(--dim); font-size: 12.5px; }
+.card li { margin-bottom: 4px; }
+.isnot { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.isnot .col { border: 1px solid var(--line); background: var(--panel); padding: 12px 16px; }
+.isnot .lbl { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); margin-bottom: 8px; }
+.isnot ul { margin: 0; padding-left: 20px; color: var(--dim); }
+.isnot .is li::marker { content: "✓ "; color: var(--green); }
+.isnot .not li::marker { content: "✕ "; color: var(--red); }
+.decs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.dec { border: 1px solid var(--line); background: var(--panel); padding: 12px 14px; }
+.dec .d { color: var(--amber); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+.dec .chosen { color: var(--ink); margin-bottom: 8px; }
+.dec .q { color: var(--green); font-style: italic; font-size: 12.5px; margin-bottom: 8px; }
+.dec .rej { color: var(--dim); font-size: 12.5px; }
+.dec .rej b { color: var(--red); font-weight: 600; letter-spacing: .1em; font-size: 10px; text-transform: uppercase; }
+.ev { border: 1px solid var(--line); background: var(--panel-2); padding: 12px 16px; color: var(--dim); }
+.ev .q { color: var(--green); font-style: italic; margin: 0 0 4px; }
+.ev .q span { color: var(--faint); font-style: normal; font-size: 11px; margin-right: 8px; }
+.ev p.n { margin: 10px 0 0; font-size: 12.5px; }
+footer { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 14px; color: var(--faint); font-size: 12px; }
+.stamp { display: inline-block; border: 1px solid var(--line); padding: 4px 10px; margin-top: 8px; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; }
+@media (max-width: 760px) {
+  .wrap { padding: 18px 16px 48px; }
+  .dials, .archgrid, .ladder, .cards, .isnot, .decs { grid-template-columns: 1fr; }
+  .dial, .rung { border-right: 0; border-bottom: 1px solid var(--line-soft); }
+  .box::after { content: none; }
+}
+@media print {
+  :root { --bg:#fff; --panel:#fafaf7; --panel-2:#f2f0ea; --line:#ccc7ba; --line-soft:#e2ded2;
+          --ink:#1a1812; --dim:#4a463c; --faint:#8a8678; --amber:#9a6a10; --amber-deep:#9a6a10;
+          --green:#2e7d32; --red:#b3261e; --cyan:#0a6e8a; --violet:#6a3fae; }
+  body::before { display: none; }
+  nav.rail, .progress { display: none; }
+  section { break-inside: avoid-page; animation: none; opacity: 1; }
+  @page { size: A4; margin: 1.2cm; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="kicker">spec lens<span class="sep">·</span>flow-next capture<span class="sep">·</span>2026-09-15</div>
+<h1><span class="id">fn-37</span>Setup installs the Hyprland configuration</h1>
+
+<div class="dials">
+  <div class="dial"><div class="v amber">open</div><div class="c">status</div></div>
+  <div class="dial"><div class="v">9</div><div class="c">acceptance criteria</div></div>
+  <div class="dial"><div class="v cyan">direct</div><div class="c">route · no-plan</div></div>
+  <div class="dial"><div class="v red">34</div><div class="c">inferred lines</div></div>
+  <div class="dial"><div class="v green">3.2.0</div><div class="c">manifest after merge</div></div>
+</div>
+
+<nav class="rail">
+  <a href="#thesis">Thesis</a><a href="#criteria">Criteria</a><a href="#arch">Architecture</a><a href="#edges">Edge cases</a><a href="#bounds">Boundaries</a><a href="#decisions">Decisions</a><a href="#evidence">Evidence</a>
+</nav>
+
+<section id="thesis">
+  <div class="shead"><span class="n">01</span><h2>Thesis</h2><span class="note">scope: business</span></div>
+  <p class="tldr">Installing the plugin is three steps and the middle one is by hand. After this spec, <strong>setup writes the Hyprland configuration itself</strong>: one Lua file in the user's hypr directory, one marked line in hyprland.lua, loaded through <em>Omarchy's optional-require helper</em> so a removed plugin never breaks the compositor.</p>
+  <div class="thesis"><b>The one clarification:</b> this removes the copy step, not the setup step. Setup still runs by hand and still asks for sudo, so the marketplace's standard-installation box stays unticked.</div>
+</section>
+
+<section id="criteria">
+  <div class="shead"><span class="n">02</span><h2>Acceptance criteria</h2><span class="note">9 rows · provenance chips · checkboxes persist locally</span></div>
+  <table>
+    <thead><tr><th></th><th>R-ID</th><th>Criterion</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr data-rid="R1"><td class="chk"><input type="checkbox"></td><td class="rid">R1</td><td><details><summary>First run writes one file, appends one marked line, records path and digest</summary><p>A first setup run on a stock Omarchy config writes one Lua file in the user's Hyprland config directory containing the three shipped snippets, appends one marked optional-require line to hyprland.lua, and records the file's path and digest in the state directory.</p><p class="err"><b>Errors</b> hyprland.lua missing, unreadable, already loading the module without the marker, or not loading Omarchy's defaults leaves both files untouched, is reported, and the rest of setup still runs; a failed write leaves hyprland.lua byte-identical.</p></details></td><td><span class="tagchip inferred">inferred</span></td></tr>
+      <tr data-rid="R2"><td class="chk"><input type="checkbox"></td><td class="rid">R2</td><td><details><summary>Second run changes nothing; exactly one marked line survives</summary><p>The file is rewritten only when the shipped snippets changed, hyprland.lua keeps exactly one marked line, and the record is unchanged.</p><p class="err"><b>Errors</b> no error surface beyond R1.</p></details></td><td><span class="tagchip inferred">inferred</span></td></tr>
+      <tr data-rid="R3"><td class="chk"><input type="checkbox"></td><td class="rid">R3</td><td><details><summary>Remove deletes the line and the recorded file; an edited file is moved aside</summary><p>Setup with remove deletes the marked line and the recorded file and leaves every other byte of hyprland.lua in place; a file whose digest differs from the record is moved into the state directory's backup and its new location is printed.</p><p class="err"><b>Errors</b> a missing file or missing line is a no-op for that part; the record is dropped either way.</p></details></td><td><span class="tagchip inferred">inferred</span></td></tr>
+      <tr data-rid="R4"><td class="chk"><input type="checkbox"></td><td class="rid">R4</td><td><details><summary>A pasted install is detected and never doubled</summary><p>On a config that already carries the pasted snippets, found by the helper path in bindings or autostart or the workspace rule in hyprland.lua, setup writes nothing to the Hyprland config, reports which file holds the pasted lines, and the rest of setup runs; no config ever ends up with two autostart lines or two sets of binds.</p><p class="err"><b>Errors</b> no error surface beyond the report.</p></details></td><td><span class="tagchip inferred">inferred</span></td></tr>
+      <tr data-rid="R5"><td class="chk"><input type="checkbox"></td><td class="rid">R5</td><td><details><summary>Setup reloads Hyprland after a write, or says a reload is needed</summary><p>After a successful write setup asks Hyprland to reload through hyprctl; with Hyprland unreachable it reports that a reload or re-login is needed.</p><p class="err"><b>Errors</b> a failed reload is reported and does not fail setup.</p></details></td><td><span class="tagchip inferred">inferred</span></td></tr>
+      <tr data-rid="R6"><td class="chk"><input type="checkbox"></td><td class="rid">R6</td><td><details><summary>A missing file loads nothing, proven through a real Lua interpreter</summary><p>When the written file is absent, the marked line loads nothing and hyprland.lua evaluates without error, verified by running the resulting config through a real Lua interpreter the way the existing Hyprland fragment tests do; the written file itself evaluates the same way against the fake Omarchy helpers.</p><p class="err"><b>Errors</b> no error surface beyond a test failure.</p></details></td><td><span class="tagchip inferred">inferred</span></td></tr>
+      <tr data-rid="R7"><td class="chk"><input type="checkbox"></td><td class="rid">R7</td><td><details><summary>README: add, setup, done; upgrade and remove sections follow</summary><p>The README install section is the add command, one setup run, and done; the snippets are described as what setup writes and links to; the upgrade section tells a pasted 3.x install to delete its pasted lines and rerun setup; the remove section no longer asks the person to delete snippets by hand.</p><p class="err"><b>Errors</b> none.</p></details></td><td><span class="tagchip inferred">inferred</span></td></tr>
+      <tr data-rid="R8"><td class="chk"><input type="checkbox"></td><td class="rid">R8</td><td><details><summary>Marketplace notes state the new write and the unticked box</summary><p>The submission notes state that setup writes one file into the user's Hyprland config and one line into hyprland.lua, replacing the earlier claim that the plugin does not edit that directory, and that the standard-installation acknowledgment stays unticked because setup still runs by hand with sudo.</p><p class="err"><b>Errors</b> none.</p></details></td><td><span class="tagchip inferred">inferred</span></td></tr>
+      <tr data-rid="R9"><td class="chk"><input type="checkbox"></td><td class="rid">R9</td><td><details><summary>Tests cover every path against a harness-owned config directory</summary><p>The fresh write, the rerun no-op, remove with a matching and with an edited file, each pasted-snippet detection path, each unrecognised hyprland.lua case, and the reload call and its unreachable fallback.</p><p class="err"><b>Errors</b> none.</p></details></td><td><span class="tagchip inferred">inferred</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="arch">
+  <div class="shead"><span class="n">03</span><h2>Architecture</h2><span class="note">scope: technical</span></div>
+  <div class="archgrid">
+    <div class="box"><div class="lbl">source</div><div class="t">three shipped snippets</div><p>Workspace rule, bindings, listener autostart. They stay in the repository as what setup reads and what the README links to.</p></div>
+    <div class="box"><div class="lbl">setup writes</div><div class="t">one Lua file</div><p>In the user's hypr directory, with a header naming the plugin and stating setup owns it. Path and digest recorded in the state directory.</p></div>
+    <div class="box"><div class="lbl">setup appends</div><div class="t">one marked line</div><p>In hyprland.lua, loading the file through Omarchy's optional-require helper; a marker comment is its identity on rerun and remove.</p></div>
+    <div class="box"><div class="lbl">then</div><div class="t">hyprctl reload</div><p>New for setup; today only the listener calls hyprctl. Unreachable Hyprland becomes a "reload or re-login" report.</p></div>
+  </div>
+  <div class="ladder">
+    <div class="rung ok"><div class="lbl">stock config</div><p>hyprland.lua loads Omarchy's defaults and carries no plugin lines. Write file, append line, record, reload.</p></div>
+    <div class="rung skip"><div class="lbl">pasted install</div><p>Helper path in bindings or autostart, or the workspace rule in hyprland.lua. Write nothing, report where, continue setup. README says: delete the pasted lines, rerun.</p></div>
+    <div class="rung stop"><div class="lbl">unrecognised</div><p>Missing or unreadable, loads the module without the marker, or does not load Omarchy's defaults. Untouched, reported, status shows the skipped write.</p></div>
+  </div>
+</section>
+
+<section id="edges">
+  <div class="shead"><span class="n">04</span><h2>Edge cases</h2><span class="note">grouped by blast radius</span></div>
+  <div class="cards">
+    <div class="card red"><div class="lbl">the person's config</div><ul><li>Temp file and rename for both writes; an interrupted setup never leaves a half-written hyprland.lua.</li><li>hyprland.lua changes by exactly one appended or removed line, otherwise byte-identical.</li><li>Setup never parses Lua; it matches the marker line, so surrounding edits survive.</li></ul></div>
+    <div class="card amber"><div class="lbl">removal and drift</div><ul><li>Remove with a missing file or line is a no-op for that part and still succeeds; a stale record is dropped.</li><li>An edited written file is moved to the state backup, never deleted.</li><li>A config without the optional helper is the unrecognised case, never a crash.</li></ul></div>
+    <div class="card cyan"><div class="lbl">the marketplace</div><ul><li>3.0.0 was reviewed on the claim that the plugin does not edit the Hyprland config. The submission notes reverse that claim before the next request, under the already-flagged installer capability.</li><li>The manifest moves to 3.2.0 in the same pull request; the version check refuses runtime changes under a tagged version.</li></ul></div>
+  </div>
+</section>
+
+<section id="bounds">
+  <div class="shead"><span class="n">05</span><h2>Boundaries</h2><span class="note">scope: business</span></div>
+  <div class="isnot">
+    <div class="col"><div class="lbl">this spec is</div><ul class="is"><li>One file written, one marked line appended, both recorded and reversible.</li><li>Detection of pasted installs with a documented manual step.</li><li>A reload after the write, with a report when Hyprland is unreachable.</li></ul></div>
+    <div class="col"><div class="lbl">this spec is not</div><ul class="not"><li>Any other change to the person's Hyprland files, including the per-file configs for bindings, autostart, or windows.</li><li>Migration of a pasted install by deleting lines the person pasted.</li><li>A change to the bindings, including the Super+Tab takeover; edit the written file instead, and its digest then protects it from remove.</li><li>A standard install; the marketplace acknowledgment stays unticked.</li></ul></div>
+  </div>
+</section>
+
+<section id="decisions">
+  <div class="shead"><span class="n">06</span><h2>Decision context</h2><span class="note">chosen · evidence · rejected</span></div>
+  <div class="decs">
+    <div class="dec"><div class="d">D1 · shape</div><div class="chosen">One file plus one optional-require line.</div><div class="q">"can we not include the copy into the setup?"</div><div class="rej"><b>Rejected</b> appending into the three per-file configs (three owned files, no clean undo); a plain require line (a missing module stops the whole config); an Omarchy plugin hook (none exists).</div></div>
+    <div class="dec"><div class="d">D2 · pasted installs</div><div class="chosen">Detect and document, never migrate.</div><div class="q">Every 3.x install pasted the snippets by hand; the maintainer's own machine is one.</div><div class="rej"><b>Rejected</b> setup deleting pasted lines from the person's config, a worse failure than asking them once.</div></div>
+    <div class="dec"><div class="d">D3 · install claim</div><div class="chosen">The copy step goes; the setup step and the sudo prompt stay.</div><div class="q">"why didn't we tick the standard installation acknowledgement?"</div><div class="rej"><b>Rejected</b> ticking the standard-installation box; the plugin still needs manual setup.</div></div>
+  </div>
+</section>
+
+<section id="evidence">
+  <div class="shead"><span class="n">07</span><h2>Conversation evidence</h2><span class="note">verbatim user turns</span></div>
+  <div class="ev">
+    <p class="q"><span>turn 1</span>"why didn't we tick the standard installation acknowledgement?"</p>
+    <p class="q"><span>turn 2</span>"can we not include the copy into the setup?"</p>
+    <p class="q"><span>turn 3</span>"do it"</p>
+    <p class="n">The design is the assistant's proposal accepted in turn 3, so its substance is tagged inferred. Facts read from the installed Omarchy: no plugin hook for Hyprland config; the user's config directory is on the Lua module path; an optional-require helper loads a module only when found; the stock hyprland.lua invites personal configuration at its end.</p>
+  </div>
+</section>
+
+<footer>
+  Render lens, not record. Source: <a href="../../specs/fn-37-setup-installs-the-hyprland.md">.flow/specs/fn-37-setup-installs-the-hyprland.md</a> · regenerable from the markdown.<br>
+  <span class="stamp">staleness stamp · spec updated_at 2026-09-15T08:43:49Z · repo commit 4415c0f · rendered 2026-09-15</span>
+</footer>
+
+</div>
+<script>
+(function () {
+  var KEY = 'fn-37-review-checks';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+  document.querySelectorAll('tr[data-rid]').forEach(function (tr) {
+    var box = tr.querySelector('input[type=checkbox]');
+    var rid = tr.getAttribute('data-rid');
+    if (state[rid]) { box.checked = true; tr.classList.add('done'); }
+    box.addEventListener('change', function () {
+      tr.classList.toggle('done', box.checked);
+      state[rid] = box.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+    });
+  });
+})();
+</script>
+</body>
+</html>
