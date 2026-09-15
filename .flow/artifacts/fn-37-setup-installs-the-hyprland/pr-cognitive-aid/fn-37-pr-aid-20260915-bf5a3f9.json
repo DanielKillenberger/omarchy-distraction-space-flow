@@ -1,0 +1,445 @@
+{
+  "artifactId": "fn-37-pr-aid-20260915-bf5a3f9",
+  "baseSha": "4415c0f24099445fb88145e38388ef325678ac5b",
+  "changeWalkthrough": {
+    "groups": [
+      {
+        "files": [],
+        "kind": "problem",
+        "ordinal": 1,
+        "rIds": [],
+        "sourceRefs": [
+          "spec"
+        ],
+        "summary": "Every install pasted the workspace rule, the bindings, and the autostart line into three files under the user's Hyprland config by hand, and every upgrade repeated it. Omarchy's plugin system has no hook for Hyprland config, so the only way to remove the step is for setup to write into the user's config directory itself.",
+        "taskIds": [],
+        "title": "The copy step"
+      },
+      {
+        "files": [],
+        "kind": "principle",
+        "ordinal": 2,
+        "rIds": [],
+        "sourceRefs": [
+          "spec"
+        ],
+        "summary": "Setup writes a single Lua file and appends a single marked line; the marker is the identity for reruns and removal, the recorded digest decides ownership. A file whose bytes match the shipped snippets or the record is setup's to rewrite or delete; anything else is the person's and is left alone, reported, or moved aside. The optional-require helper makes a missing file harmless.",
+        "taskIds": [],
+        "title": "One file, one line, one digest"
+      },
+      {
+        "files": [
+          {
+            "additions": 365,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 2,
+            "path": "ds/setup.py",
+            "rIds": [
+              "R1",
+              "R2",
+              "R3",
+              "R4",
+              "R5"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-impl",
+              "c-fix1",
+              "c-fix2",
+              "c-fix3",
+              "rid-R1",
+              "rid-R2",
+              "rid-R3",
+              "rid-R4",
+              "rid-R5"
+            ],
+            "summary": "New hypr block: _replace_bytes keeps the mode; _user_lua_text reads a person's config through a symlink with the shared bound; _pasted_hypr_files scans every Lua file; _unrecognised_hyprland names the symlink, missing, unreadable, no-defaults and plain-require cases; sync_hypr decides edited, linked, file, line and record changes in one pass and writes hyprland.lua last; remove_hypr reverses it.",
+            "taskIds": []
+          },
+          {
+            "additions": 1,
+            "attentionClass": "mechanical",
+            "changeType": "modified",
+            "deletions": 1,
+            "path": "hypr/bindings.lua",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-headers"
+            ],
+            "summary": "The header comment no longer reads as a paste instruction, because the line ends up inside the file setup writes.",
+            "taskIds": []
+          },
+          {
+            "additions": 1,
+            "attentionClass": "mechanical",
+            "changeType": "modified",
+            "deletions": 1,
+            "path": "hypr/autostart.lua",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-headers"
+            ],
+            "summary": "Same header change as bindings.lua.",
+            "taskIds": []
+          }
+        ],
+        "kind": "step",
+        "ordinal": 3,
+        "rIds": [
+          "R1",
+          "R2",
+          "R3",
+          "R4",
+          "R5"
+        ],
+        "sourceRefs": [
+          "task-1",
+          "c-impl",
+          "c-fix1",
+          "c-fix2",
+          "c-fix3",
+          "rid-R1",
+          "rid-R2",
+          "rid-R3",
+          "rid-R4",
+          "rid-R5"
+        ],
+        "summary": "The hypr block in setup: read the shipped snippets into one owned file, append the marked optional-require line last through a temp file and rename so a failed write leaves hyprland.lua byte-identical, keep the file mode, record path, digest and whether a trailing newline had to be added, and ask Hyprland to reload. Remove drops the line, deletes a matching file, moves an edited one into a backup directory, leaves a symlinked one in place, and names a hand-added line in a symlinked hyprland.lua. Pasted installs are detected across every Lua file in the directory, including through symlinks and for the pre-2.1.0 plugin id, and reported instead of doubled; an unrecognised hyprland.lua is reported and skipped while the rest of setup runs.",
+        "taskIds": [
+          "fn-37-setup-installs-the-hyprland.1"
+        ],
+        "title": "Setup writes the Hyprland config and takes it back on remove"
+      },
+      {
+        "files": [
+          {
+            "additions": 33,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 2,
+            "path": "ds/state.py",
+            "rIds": [
+              "R1"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-fix1",
+              "c-fix2",
+              "c-fix3",
+              "rid-R1"
+            ],
+            "summary": "read_bounded gains a follow flag for a person's own files; HYPR_SYNC_STATES and hypr_sync define the note once; _health adds the hyprland service entry and reason.",
+            "taskIds": []
+          }
+        ],
+        "kind": "step",
+        "ordinal": 4,
+        "rIds": [
+          "R1"
+        ],
+        "sourceRefs": [
+          "task-1",
+          "c-fix1",
+          "c-fix2",
+          "c-fix3",
+          "rid-R1"
+        ],
+        "summary": "Setup leaves a sync note in hypr.json; state.hypr_sync reads it back and health lists a pasted install as a pending Hyprland service, which keeps the badge degraded until the person migrates, and a skipped write as an unknown service, so the bar shows the reason without pinning the badge red for a config setup deliberately declines to touch.",
+        "taskIds": [
+          "fn-37-setup-installs-the-hyprland.1"
+        ],
+        "title": "Status shows a write that did not happen"
+      },
+      {
+        "files": [
+          {
+            "additions": 12,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 13,
+            "path": "README.md",
+            "rIds": [
+              "R7"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-impl",
+              "c-fix1",
+              "c-fix3",
+              "rid-R7"
+            ],
+            "summary": "Install, 2.x upgrade, pasted-install, and remove sections rewritten around the automatic write.",
+            "taskIds": []
+          },
+          {
+            "additions": 3,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 3,
+            "path": "docs/marketplace-submission.md",
+            "rIds": [
+              "R8"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-impl",
+              "rid-R8"
+            ],
+            "summary": "States the one file and one line setup writes, retracts the old no-edit claim, keeps the acknowledgment unticked.",
+            "taskIds": []
+          },
+          {
+            "additions": 4,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 2,
+            "path": "docs/internals.md",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-impl",
+              "c-fix1",
+              "c-fix2",
+              "c-fix3"
+            ],
+            "summary": "Hyprland paragraph updated; State files table gains hypr.json and hypr-backup rows.",
+            "taskIds": []
+          },
+          {
+            "additions": 1,
+            "attentionClass": "mechanical",
+            "changeType": "modified",
+            "deletions": 1,
+            "path": "manifest.json",
+            "rIds": [],
+            "sourceRefs": [
+              "diff",
+              "c-impl"
+            ],
+            "summary": "Version 3.1.0 to 3.2.0.",
+            "taskIds": []
+          }
+        ],
+        "kind": "step",
+        "ordinal": 5,
+        "rIds": [
+          "R7",
+          "R8"
+        ],
+        "sourceRefs": [
+          "task-1",
+          "c-impl",
+          "c-fix1",
+          "c-fix3",
+          "rid-R7",
+          "rid-R8"
+        ],
+        "summary": "The README install section is the add command and one setup run, followed by one login or a hand start of the listener, because Hyprland runs autostart lines only at login. The 2.x upgrade paragraph and a retitled pasted-install section tell every earlier install to delete its pasted lines first. The remove section no longer asks for hand deletion. internals.md documents hypr.json and hypr-backup. The marketplace notes replace the earlier claim that the plugin does not edit the Hyprland config and say why the standard-installation box stays unticked. The manifest declares 3.2.0 so the version check passes.",
+        "taskIds": [
+          "fn-37-setup-installs-the-hyprland.1"
+        ],
+        "title": "Docs say what setup does, and the version moves"
+      },
+      {
+        "files": [],
+        "kind": "kept",
+        "ordinal": 6,
+        "rIds": [],
+        "sourceRefs": [
+          "spec"
+        ],
+        "summary": "The bindings themselves, including the Super+Tab takeover, are the same lines as before, now inside the written file. The per-file configs for bindings, autostart and windows are never edited. A pasted install is detected and documented, never migrated by deleting the person's lines. Setup still runs by hand with sudo, so the marketplace's standard-installation acknowledgment stays unticked.",
+        "taskIds": [],
+        "title": "Deliberately unchanged"
+      },
+      {
+        "files": [
+          {
+            "additions": 543,
+            "attentionClass": "canonical",
+            "changeType": "modified",
+            "deletions": 2,
+            "path": "tests/test_setup.py",
+            "rIds": [
+              "R6",
+              "R9"
+            ],
+            "sourceRefs": [
+              "diff",
+              "c-impl",
+              "c-fix1",
+              "c-fix2",
+              "c-fix3",
+              "rid-R6",
+              "rid-R9"
+            ],
+            "summary": "Twenty-two Hyprland tests plus a fake hyprctl that logs reload calls; the shared _install helper drops only the two expected hyprland report lines.",
+            "taskIds": []
+          }
+        ],
+        "kind": "verify",
+        "ordinal": 7,
+        "rIds": [
+          "R6",
+          "R9"
+        ],
+        "sourceRefs": [
+          "task-1",
+          "review",
+          "c-fix1",
+          "c-fix2",
+          "c-fix3",
+          "rid-R6",
+          "rid-R9"
+        ],
+        "summary": "Twenty-two tests against the harness sandbox cover the fresh write, the byte- and inode-identical rerun, a rerun over an edited file and over a deleted file, a snippet-set change, remove with a matching, edited, missing, or symlinked file, the trailing-newline round trip, each pasted-detection path including a symlinked sibling and the legacy id, each unrecognised hyprland.lua case including a symlink and a plain require, mode preservation, the reload and its unreachable fallback, status for skipped and pasted outcomes, the first-write listener hint, and Lua evaluation of the written file and of the marked line with the module absent through a real interpreter. The host review ran four rounds on claude-opus-5 (two three-draw fan-outs and two single re-reviews); every finding from the first three rounds is fixed in the three fix commits, and two P3 edge findings from the last round are recorded as follow-ups in the task evidence.",
+        "taskIds": [
+          "fn-37-setup-installs-the-hyprland.1"
+        ],
+        "title": "How this was checked"
+      }
+    ],
+    "proof": [
+      {
+        "label": "Full suite at head",
+        "sourceRefs": [
+          "task-1",
+          "c-fix3"
+        ],
+        "value": "517 tests OK, 1 skipped (Lua test ran)"
+      },
+      {
+        "label": "Hyprland-specific tests",
+        "sourceRefs": [
+          "task-1",
+          "rid-R9",
+          "diff"
+        ],
+        "value": "22 new tests in tests/test_setup.py, all green"
+      },
+      {
+        "label": "Host review",
+        "sourceRefs": [
+          "review"
+        ],
+        "value": "4 rounds on claude-opus-5, final verdict SHIP"
+      },
+      {
+        "label": "Acceptance criteria",
+        "sourceRefs": [
+          "task-1",
+          "rid-R1",
+          "rid-R2",
+          "rid-R3",
+          "rid-R4",
+          "rid-R5",
+          "rid-R6",
+          "rid-R7",
+          "rid-R8",
+          "rid-R9"
+        ],
+        "value": "R1 to R9 all claimed by the done task"
+      }
+    ],
+    "thesis": "Installing the plugin was add, paste three Lua snippets into the right Hyprland files by hand, run setup. Setup now writes those snippets itself: one owned file in the user's hypr directory and one marked line in hyprland.lua that loads it through Omarchy's optional-require helper, so a removed plugin never breaks the compositor. Setup and remove agree on ownership through a recorded digest, so a person's edits are never overwritten and never deleted, pasted installs are detected instead of doubled, and status reports a write that could not happen. This removes the copy step, not the setup step: setup still runs by hand and still asks for sudo."
+  },
+  "generatedAt": "2026-09-15T13:05:00Z",
+  "headSha": "bf5a3f9463a9f18a02c842bf3fb19ce6940b500b",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "spec",
+      "kind": "spec",
+      "ref": "fn-37-setup-installs-the-hyprland"
+    },
+    {
+      "id": "task-1",
+      "kind": "task",
+      "ref": "fn-37-setup-installs-the-hyprland.1"
+    },
+    {
+      "id": "rid-R1",
+      "kind": "rid",
+      "ref": "R1"
+    },
+    {
+      "id": "rid-R2",
+      "kind": "rid",
+      "ref": "R2"
+    },
+    {
+      "id": "rid-R3",
+      "kind": "rid",
+      "ref": "R3"
+    },
+    {
+      "id": "rid-R4",
+      "kind": "rid",
+      "ref": "R4"
+    },
+    {
+      "id": "rid-R5",
+      "kind": "rid",
+      "ref": "R5"
+    },
+    {
+      "id": "rid-R6",
+      "kind": "rid",
+      "ref": "R6"
+    },
+    {
+      "id": "rid-R7",
+      "kind": "rid",
+      "ref": "R7"
+    },
+    {
+      "id": "rid-R8",
+      "kind": "rid",
+      "ref": "R8"
+    },
+    {
+      "id": "rid-R9",
+      "kind": "rid",
+      "ref": "R9"
+    },
+    {
+      "id": "diff",
+      "kind": "diff_metadata",
+      "ref": "4415c0f24099445fb88145e38388ef325678ac5b..bf5a3f9463a9f18a02c842bf3fb19ce6940b500b"
+    },
+    {
+      "id": "c-impl",
+      "kind": "commit",
+      "ref": "8792d7f65f657bfa7a9632924b7dd46003749e51"
+    },
+    {
+      "id": "c-headers",
+      "kind": "commit",
+      "ref": "f6b06a037aced5d627ac2329ca3b797478ee005b"
+    },
+    {
+      "id": "c-fix1",
+      "kind": "commit",
+      "ref": "5448de2e1ecac4285ebbd12ab3d7b69faf17e458"
+    },
+    {
+      "id": "c-fix2",
+      "kind": "commit",
+      "ref": "7d11472cc473566328360b3959f15b15634c062c"
+    },
+    {
+      "id": "c-fix3",
+      "kind": "commit",
+      "ref": "bf5a3f9463a9f18a02c842bf3fb19ce6940b500b"
+    },
+    {
+      "id": "review",
+      "kind": "review_receipt",
+      "ref": "/tmp/impl-review-receipt-3a5b6c667e92-fn-37-setup-installs-the-hyprland.1.json"
+    }
+  ],
+  "specId": "fn-37-setup-installs-the-hyprland"
+}
