@@ -1,7 +1,7 @@
 {
   "branch_name": "fn-38-readme-shows-the-features-and-drops-the",
-  "completion_review_status": "unknown",
-  "completion_reviewed_at": null,
+  "completion_review_status": "not_required",
+  "completion_reviewed_at": "2026-09-15T14:47:28.028646Z",
   "created_at": "2026-09-15T08:53:24.731603Z",
   "default_impl": null,
   "default_review": null,
@@ -178,5 +178,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-09-15T14:45:59.822771Z"
+  "updated_at": "2026-09-15T14:47:28.028655Z"
 }
