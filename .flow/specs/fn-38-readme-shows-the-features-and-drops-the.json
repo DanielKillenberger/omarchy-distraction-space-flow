@@ -8,13 +8,50 @@
   "default_sync": null,
   "depends_on_epics": [],
   "id": "fn-38-readme-shows-the-features-and-drops-the",
-  "impl_review_rounds": {},
+  "impl_review_rounds": {
+    "fn-38-readme-shows-the-features-and-drops-the.1": 0
+  },
   "next_task": 1,
   "no_plan": true,
   "plan_review_rounds": 0,
   "plan_review_status": "unknown",
   "plan_reviewed_at": null,
   "ready": true,
+  "review_attempts": [
+    {
+      "artifact_sha256": "980943deadea4988fcd730a7d8cbfe37d705695f11714a6c60c01e798fce52a0",
+      "backend": "codex",
+      "base_sha": "cdc7dadcf7b4c7608a587cceafac08631822908a",
+      "counter_kind": "impl",
+      "failure_class": "nonzero_exit",
+      "finalized": {
+        "digest": "not_applicable",
+        "receipt": "not_applicable",
+        "status": "not_applicable"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "8efbe07d45bd9780a029fad61870016f1fedcaaa",
+      "head_sha_observed": true,
+      "kind": "impl",
+      "outcome": "transport_failure",
+      "output_bytes": 75,
+      "output_sha256": "54a3f11c7b2d494ea37c84ca79ea09596e131b28e95c2073cb830fa99ab55bd5",
+      "reservation_id": "3ba7de4f1a014601ba221434e89003c5",
+      "round_consumed": false,
+      "scope": "impl:fn-38-readme-shows-the-features-and-drops-the.1",
+      "superseded_by": null,
+      "task": "fn-38-readme-shows-the-features-and-drops-the.1",
+      "timestamp": "2026-09-15T14:25:59.746655Z",
+      "verdict": null
+    }
+  ],
+  "review_hash_epoch": {},
+  "review_pending_rounds": {},
+  "review_reservations": {},
+  "review_transport_failures": {
+    "impl:fn-38-readme-shows-the-features-and-drops-the.1": 1
+  },
   "spec_path": ".flow/specs/fn-38-readme-shows-the-features-and-drops-the.md",
   "status": "open",
   "title": "README shows the features and drops the clutter",
@@ -29,5 +66,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-09-15T14:17:56.096193Z"
+  "updated_at": "2026-09-15T14:25:59.747300Z"
 }
