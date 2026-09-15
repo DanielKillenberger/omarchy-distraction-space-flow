@@ -114,7 +114,7 @@
     "impl:fn-33-orphaned-mutes-are-released-and-every.1": 0
   },
   "spec_path": ".flow/specs/fn-33-orphaned-mutes-are-released-and-every.md",
-  "status": "open",
+  "status": "done",
   "title": "Orphaned mutes are released and every mute is logged",
   "tracker": {
     "baseHashFlow": null,
@@ -127,5 +127,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-09-06T16:04:10.293449Z"
+  "updated_at": "2026-09-15T08:17:15.489999Z"
 }

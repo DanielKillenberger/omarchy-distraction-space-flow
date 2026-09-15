@@ -88,7 +88,7 @@
     "impl:fn-31-notification-hold-recovers-from-a-late.1": 0
   },
   "spec_path": ".flow/specs/fn-31-notification-hold-recovers-from-a-late.md",
-  "status": "open",
+  "status": "done",
   "title": "Notification hold recovers from a late shell",
   "tracker": {
     "baseHashFlow": null,
@@ -101,5 +101,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-09-06T11:21:08.796422Z"
+  "updated_at": "2026-09-15T08:17:14.567290Z"
 }

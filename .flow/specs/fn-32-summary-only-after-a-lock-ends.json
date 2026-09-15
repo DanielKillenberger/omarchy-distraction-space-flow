@@ -61,7 +61,7 @@
     "impl:fn-32-summary-only-after-a-lock-ends.1": 0
   },
   "spec_path": ".flow/specs/fn-32-summary-only-after-a-lock-ends.md",
-  "status": "open",
+  "status": "done",
   "title": "Summary only after a lock ends",
   "tracker": {
     "baseHashFlow": null,
@@ -74,5 +74,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-09-06T13:47:34.154472Z"
+  "updated_at": "2026-09-15T08:17:15.017412Z"
 }

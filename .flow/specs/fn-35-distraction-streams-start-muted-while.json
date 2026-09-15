@@ -290,7 +290,7 @@
     "plan": 0
   },
   "spec_path": ".flow/specs/fn-35-distraction-streams-start-muted-while.md",
-  "status": "open",
+  "status": "done",
   "title": "Distraction streams start muted while the hold is on",
   "tracker": {
     "baseHashFlow": null,
@@ -303,5 +303,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-09-06T18:26:15.100602Z"
+  "updated_at": "2026-09-15T08:17:16.480868Z"
 }
