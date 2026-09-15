@@ -9,7 +9,8 @@
   "depends_on_epics": [],
   "id": "fn-38-readme-shows-the-features-and-drops-the",
   "impl_review_rounds": {
-    "fn-38-readme-shows-the-features-and-drops-the.1": 0
+    "fn-38-readme-shows-the-features-and-drops-the.1": 0,
+    "fn-38-readme-shows-the-features-and-drops-the.2": 0
   },
   "next_task": 1,
   "no_plan": true,
@@ -154,15 +155,103 @@
       "task": "fn-38-readme-shows-the-features-and-drops-the.1",
       "timestamp": "2026-09-15T14:45:59.820471Z",
       "verdict": "SHIP"
+    },
+    {
+      "artifact_sha256": "6c522619208d64e58397cfed5e92cb5a3a8bc3030bd484edf542aee49ffa15c7",
+      "backend": "cursor",
+      "base_sha": "8efbe07d45bd9780a029fad61870016f1fedcaaa",
+      "counter_kind": "impl",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "findings_digest": {
+        "backend": "cursor",
+        "digest_truncated": false,
+        "items": [
+          {
+            "chainRoot": "finding-5ca78ff48429d84f239d0b850bc579f3",
+            "classification": "introduced",
+            "findingId": "finding-5ca78ff48429d84f239d0b850bc579f3",
+            "firstSeenThisRound": true,
+            "severity": "P2",
+            "status": "open"
+          }
+        ],
+        "reviewKind": "implementation"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "2b4a18b28f9798641d529af543a95c3d804356f3",
+      "head_sha_observed": true,
+      "kind": "impl",
+      "model": "gpt-5.6-sol-high",
+      "outcome": "verdict",
+      "output_bytes": 955,
+      "output_sha256": "4ef1ce4f6f93725f548ea287de9770d3eba99374019b1c5cf489bcbdd2ef4526",
+      "reservation_id": "966216aa56b94f39b34e6f5a4891bedc",
+      "round_consumed": true,
+      "scope": "impl:fn-38-readme-shows-the-features-and-drops-the.2",
+      "superseded_by": null,
+      "task": "fn-38-readme-shows-the-features-and-drops-the.2",
+      "timestamp": "2026-09-15T15:17:10.177377Z",
+      "verdict": "NEEDS_WORK"
+    },
+    {
+      "artifact_sha256": "147c1c637edf136b0d90bfbcd6a8001ea05da66d3fb412d0f1dab79b02af199b",
+      "backend": "cursor",
+      "base_sha": "8efbe07d45bd9780a029fad61870016f1fedcaaa",
+      "counter_kind": "impl",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "findings_digest": {
+        "backend": "cursor",
+        "digest_truncated": false,
+        "items": [
+          {
+            "chainRoot": "finding-5ca78ff48429d84f239d0b850bc579f3",
+            "classification": "introduced",
+            "findingId": "finding-5ca78ff48429d84f239d0b850bc579f3",
+            "firstSeenThisRound": false,
+            "severity": "P2",
+            "status": "fixed"
+          }
+        ],
+        "reviewKind": "implementation"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "4eddf7a623eeeb04c5e9a4ae9b6bfc449452d3c9",
+      "head_sha_observed": true,
+      "kind": "impl",
+      "model": "gpt-5.6-sol-high",
+      "outcome": "verdict",
+      "output_bytes": 470,
+      "output_sha256": "b8482d67176d6cbea3e9641ce5e7ae71167d334f0aedd69a606f342b09b5d6e8",
+      "reservation_id": "1bc3b1d5e29145f5a62845bc16b7e636",
+      "round_consumed": true,
+      "scope": "impl:fn-38-readme-shows-the-features-and-drops-the.2",
+      "superseded_by": null,
+      "task": "fn-38-readme-shows-the-features-and-drops-the.2",
+      "timestamp": "2026-09-15T15:17:59.106985Z",
+      "verdict": "SHIP"
     }
   ],
   "review_hash_epoch": {
-    "impl:fn-38-readme-shows-the-features-and-drops-the.1": 1
+    "impl:fn-38-readme-shows-the-features-and-drops-the.1": 1,
+    "impl:fn-38-readme-shows-the-features-and-drops-the.2": 1
   },
   "review_pending_rounds": {},
   "review_reservations": {},
   "review_transport_failures": {
-    "impl:fn-38-readme-shows-the-features-and-drops-the.1": 0
+    "impl:fn-38-readme-shows-the-features-and-drops-the.1": 0,
+    "impl:fn-38-readme-shows-the-features-and-drops-the.2": 0
   },
   "spec_path": ".flow/specs/fn-38-readme-shows-the-features-and-drops-the.md",
   "status": "open",
@@ -178,5 +267,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-09-15T15:08:39.476542Z"
+  "updated_at": "2026-09-15T15:17:59.109585Z"
 }
