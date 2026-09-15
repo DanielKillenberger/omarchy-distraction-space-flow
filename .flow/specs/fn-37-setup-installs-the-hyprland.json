@@ -1,19 +1,135 @@
 {
   "branch_name": "fn-37-setup-installs-the-hyprland",
-  "completion_review_status": "unknown",
-  "completion_reviewed_at": null,
+  "completion_review_status": "not_required",
+  "completion_reviewed_at": "2026-09-15T10:18:39.093886Z",
   "created_at": "2026-09-15T08:43:48.573015Z",
   "default_impl": null,
   "default_review": null,
   "default_sync": null,
   "depends_on_epics": [],
   "id": "fn-37-setup-installs-the-hyprland",
-  "impl_review_rounds": {},
+  "impl_review_rounds": {
+    "fn-37-setup-installs-the-hyprland.1": 0
+  },
   "next_task": 1,
   "no_plan": true,
   "plan_review_rounds": 0,
   "plan_review_status": "unknown",
   "plan_reviewed_at": null,
+  "review_attempts": [
+    {
+      "artifact_sha256": "235e65dac716ca1a9df59d9418b91fcdea47ce75f7b20e3bf324aff0c4cd58ca",
+      "backend": "host",
+      "counter_kind": "impl",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "f6b06a037aced5d627ac2329ca3b797478ee005b",
+      "head_sha_observed": false,
+      "kind": "impl",
+      "outcome": "verdict",
+      "output_bytes": 8291,
+      "output_sha256": "2e59cb7ebe0ebdb6c23c1e081a0dd035f21234504d9efc6695dbdeca308ec33f",
+      "reservation_id": "8302f48fd44e4ed88d40792573178af8",
+      "round_consumed": true,
+      "scope": "impl:fn-37-setup-installs-the-hyprland.1",
+      "superseded_by": null,
+      "task": "fn-37-setup-installs-the-hyprland.1",
+      "timestamp": "2026-09-15T09:32:23.169586Z",
+      "verdict": "NEEDS_WORK"
+    },
+    {
+      "artifact_sha256": "8113766340eeb9b2317b419da1a9a2aefb9871a4391a4d11674d92e11c42d23d",
+      "backend": "host",
+      "counter_kind": "impl",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "5448de2e1ecac4285ebbd12ab3d7b69faf17e458",
+      "head_sha_observed": false,
+      "kind": "impl",
+      "outcome": "verdict",
+      "output_bytes": 2086,
+      "output_sha256": "824f2a11c09ade48d5bc20512291f6041f76951e02220a5c73161cf2ada765cd",
+      "reservation_id": "e3ad34b5812947abb51dbfa8998cf468",
+      "round_consumed": true,
+      "scope": "impl:fn-37-setup-installs-the-hyprland.1",
+      "superseded_by": null,
+      "task": "fn-37-setup-installs-the-hyprland.1",
+      "timestamp": "2026-09-15T09:49:14.440839Z",
+      "verdict": "SHIP"
+    },
+    {
+      "artifact_sha256": "237648fd7bc160bcc43d35b5e0b61f484f9fdd169f84cb429a3c0f9f33748f84",
+      "backend": "host",
+      "counter_kind": "impl",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "forced": false,
+      "hash_epoch": 1,
+      "head_sha": "7d11472cc473566328360b3959f15b15634c062c",
+      "head_sha_observed": false,
+      "kind": "impl",
+      "outcome": "verdict",
+      "output_bytes": 3951,
+      "output_sha256": "69cd0671535338bb4b6a17807bc6c7b4af5663912c8a78a6d7154452af38f461",
+      "reservation_id": "342db2d21e2c4efba5e40849b00ded56",
+      "round_consumed": true,
+      "scope": "impl:fn-37-setup-installs-the-hyprland.1",
+      "superseded_by": null,
+      "task": "fn-37-setup-installs-the-hyprland.1",
+      "timestamp": "2026-09-15T10:04:56.293388Z",
+      "verdict": "NEEDS_WORK"
+    },
+    {
+      "artifact_sha256": "339dc025bd7b19c5152dd86237ce6bb85955ce671f90dd322cca446fed37e728",
+      "backend": "host",
+      "counter_kind": "impl",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "forced": false,
+      "hash_epoch": 1,
+      "head_sha": "bf5a3f9463a9f18a02c842bf3fb19ce6940b500b",
+      "head_sha_observed": false,
+      "kind": "impl",
+      "outcome": "verdict",
+      "output_bytes": 1204,
+      "output_sha256": "d552778b2b0c7b9c00b066dc5fa9e2ad3cc4aded715fa9cb760488f00d5d741c",
+      "reservation_id": "f45a2af500e04bd495f86a4d3a0794c2",
+      "round_consumed": true,
+      "scope": "impl:fn-37-setup-installs-the-hyprland.1",
+      "superseded_by": null,
+      "task": "fn-37-setup-installs-the-hyprland.1",
+      "timestamp": "2026-09-15T10:18:37.233799Z",
+      "verdict": "SHIP"
+    }
+  ],
+  "review_hash_epoch": {
+    "impl:fn-37-setup-installs-the-hyprland.1": 2
+  },
+  "review_pending_rounds": {},
+  "review_reservations": {},
+  "review_transport_failures": {
+    "impl:fn-37-setup-installs-the-hyprland.1": 0
+  },
   "spec_path": ".flow/specs/fn-37-setup-installs-the-hyprland.md",
   "status": "open",
   "title": "Setup installs the Hyprland configuration",
@@ -28,5 +144,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-09-15T08:43:49.540825Z"
+  "updated_at": "2026-09-15T10:18:39.093895Z"
 }

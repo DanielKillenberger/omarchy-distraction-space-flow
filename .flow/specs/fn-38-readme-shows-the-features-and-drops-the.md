@@ -1,0 +1,68 @@
+# README shows the features and drops the clutter
+
+## Goal & Context
+<!-- scope: business -->
+
+A person who lands on the repository page should be able to tell in about a minute what the plugin does for them and whether they want it. Today the README is 215 lines of reference-grade prose. The opening paragraph runs ten sentences and mixes the pitch with the systemd slice name and the workspace identifier. Install carries the complete dependency list, a paragraph on link routing, and a paragraph on everything setup writes. "What it does" is eight dense paragraphs, each a feature explained down to nftables sets and socket2 events. Limits, Configure, Commands, and Contributing follow at the same density. The features that would sell the plugin are in there, but a reader has to mine for them.
+
+The user asked for the README to be cleared of clutter, to show the features prominently, and to stay simple and appealing so a human can judge whether they would like the plugin. The reference material is valuable and stays in the repository; it moves out of the README into the docs, so the README becomes the pitch and the quick path in, and the docs stay the complete account.
+
+This depends on fn-37, which makes setup write the Hyprland configuration. After fn-37 an install is the add command and one setup run, and that one-command story is the README's most appealing paragraph. Writing the new README against the three-snippet install would mean rewriting its headline section a second time.
+
+## Architecture & Data Models
+<!-- scope: technical -->
+
+**The README, top to bottom.** Title, one sentence saying what it is, the existing screenshot. Then a feature list: one line per feature, each stated as what happens for the person, in this order of impact: listed apps and sites live on one workspace and their windows go back there; listed sites load only from that workspace and get a block page elsewhere; links clicked anywhere open there instead of in the work browser; notifications wait with a visible count in the bar; sounds from the space stay muted; a lock keeps the space closed for a set time and leaving early costs a written reason; one line when you come back, from your own agent if you turn that on. A three-sentence "how it works" paragraph after the list names the mechanism once: one process group, one workspace, one browser profile, and a firewall rule keyed on that process group. Then Install, Use (keys and the bar widget), Configure (the file, the menu command, a link to the key table), Remove, and a short "More" section linking to the reference docs, internals, contributing, and the license.
+
+**Screenshots.** Each feature in the list is illustrated by a screenshot captured on a real Omarchy desktop, kept under `docs/images/`, and placed in the README next to the feature it shows. The set, one image each: the distraction workspace with two or three listed apps tiled on it; the block page a work browser shows for a listed site; the "opened in the distraction space" banner while on another workspace; the bar widget with a held count together with the "While you were away" notice (the existing image, reused); the lock prompt asking for minutes and purpose; the unlock prompt asking for a reason. Each is a region capture of the element that matters, not a full desktop, so it reads at README width. The existing `preview.png` stays where it is until the new set replaces it, and the reference doc gets no images.
+
+**Capture.** The captures are taken on the maintainer's machine through `grim` against the running plugin, with the states staged through the plugin's own commands: `open` for the workspace and the banner, a listed URL typed into the work browser for the block page, `lock` and `unlock` for the two prompts. Privacy is eliminated by construction, not by care. Every browser window that appears in a capture is launched from a throwaway profile directory created for the capture and deleted afterwards, never from the maintainer's distraction profile or the work browser's profile, so no logged-in page, bookmark bar, tab strip, saved password prompt, or account avatar can be on screen; the window is an app window (`--app=<url>`) on a public, logged-out page. The workspace shot is staged that way too: two or three app windows from throwaway profiles on public front pages, launched into the slice through `systemd-run` the way `open` does, so containment and the block behave as in real use. The bar widget shot is the existing image, already public. The lock and unlock prompts contain only what the capture types into them. Every capture is a `grim -g` region around the element: never the bar's tray, clock, workspace strip, or any other window, so nothing outside the staged element can leak in. The staged lock entries go to the plugin's own log with staged purpose and reason strings, and the captures never read or display the maintainer's held records, state files, or notification history. Before any image is written into the repository, every candidate image is shown to the maintainer in the session and named as approved; an image the maintainer has not seen is never committed. When the session cannot reach the Wayland display, the task stops on the capture criterion and says so rather than shipping the README with placeholders.
+
+**Install after fn-37.** One sentence of prerequisites (Omarchy 4 and a Chromium-family browser for the web products), the add command, the setup command, and one sentence saying setup asks for sudo once and what for, linking to the reference for the complete list of what it writes. The note for a pasted 3.x install is a link, not text.
+
+**The reference doc.** A new `docs/reference.md` receives, in this order, the material the README gives up: requirements and runtime dependencies; what setup installs and where, including the link-routing question and its config key; moving a pasted 3.x install; the full account of each feature that today lives under "What it does"; the limits; the config key table; the command table. It is a move, edited only for flow: every statement of behaviour, path, default, exit code, and limit in the current README appears in the README or in that doc. `docs/internals.md` keeps its scope and is not edited except for its opening link.
+
+**Dropped, not moved.** Nobody ran 2.x, so the "Upgrading from 2.x" section and the pre-2.1.0 plugin-id migration note appear nowhere after this change. The `profile import` command keeps its row in the command table, because the code ships it, and the sentence in the limits about Chromium handing a second launch to the running instance keeps the hand-off fact and drops its "after upgrading" clause.
+
+**Contributing.** The test command and the one-line invitation stay in the README. The mise caveat, the CI description, the qmllint recipe with its two accepted warnings, and the flow-next sister-repository setup move to `CONTRIBUTING.md` at the repository root, which GitHub links from the page.
+
+**Links that point at the README.** `docs/marketplace-submission.md` sends the reviewer to the README for dependencies and the complete setup and removal commands; it points at the reference doc after the move. `docs/internals.md` opens by saying the README covers installing and operating the plugin; it says the README and the reference doc do.
+
+## Edge Cases & Constraints
+<!-- scope: technical -->
+
+- No behaviour changes and no runtime file changes. The change is README, `docs/`, and `CONTRIBUTING.md`, which the version check exempts, so the manifest version stays where fn-37 leaves it.
+- Relative links and the image path resolve to files in the repository at the paths GitHub renders, from the README, from `docs/`, and from `CONTRIBUTING.md`.
+- The feature list makes no claim the reference does not back. Wording that promises more than the plugin does, or drops a qualifier the Limits section relies on (ECH pass-through, no HTTPS block page, Chromium-family only), is a defect.
+- The keys table is copied, not reworded; the bindings are the contract.
+
+## Acceptance Criteria
+<!-- scope: both -->
+
+- **R1:** The README opens with the title, one sentence of pitch, the screenshot, and a feature list of at most eight one-line items, each stating a user outcome, all before any install instruction. Errors: none.
+- **R2:** The Install section is a one-sentence prerequisite line, the add command, the setup command, and one sentence on the single sudo prompt with a link to the reference; it matches fn-37's install shape and contains no snippet-copying step. Errors: none.
+- **R3:** The README is at most 100 lines and no paragraph exceeds four sentences; the keys table and the bar-widget behaviour stay in it. Errors: none.
+- **R4:** Every statement of behaviour, path, default, exit code, or limit in the pre-change README appears in the README, in `docs/reference.md`, or in `CONTRIBUTING.md`, and each README section that gave up material links to where it went. Errors: a reviewer's diff of the old README against the new files finds no lost fact.
+- **R5:** Every relative link and image reference in the README, `docs/reference.md`, `docs/internals.md`, `docs/marketplace-submission.md`, and `CONTRIBUTING.md` resolves to a file in the repository; the marketplace notes point at the reference doc for dependencies and setup commands. Errors: none.
+- **R6:** The offline test suite passes unchanged, and the diff touches no file outside README, `docs/`, and `CONTRIBUTING.md`. Errors: none.
+- **R7:** The README carries the six screenshots named in Architecture, each under `docs/images/`, each placed beside the feature it illustrates with alt text that says what is shown, each a region capture readable at README width and under 400 KB. Errors: a capture that cannot be taken because the display is unreachable stops the task with a report naming the missing image; a placeholder or a stock image is a defect.
+- **R8:** No screenshot shows personal content: no message text, contact name, account name, avatar, or notification body from real use, and no path or hostname other than the plugin's own. Errors: none.
+- **R9:** Every browser window in a capture runs from a throwaway profile directory created for the capture, on a public logged-out page, as an app window; the maintainer's distraction profile and work profile are never launched for a capture; every capture is a region around the staged element and includes no tray, clock, workspace strip, or other window; the captures read no held record, state file, or notification history. Errors: a capture that cannot be staged this way is not taken, and the task reports which image is missing and why.
+- **R10:** No image enters the repository until the maintainer has seen it in the session and approved it by name; the task stops with the candidate images on disk outside the repository and a list of them, and commits only the approved ones. Errors: an unapproved or rejected image is deleted, never committed.
+- **R11:** The "Upgrading from 2.x" section and the pre-2.1.0 id migration note are absent from the README and the docs; R4 does not apply to them. The `profile import` row stays in the command table. Errors: none.
+
+## Boundaries
+<!-- scope: business -->
+
+- No recordings or animated images; still screenshots only.
+- No screenshots in the reference doc or in the contributing file.
+- The maintainer's real browser profiles, chats, notifications, and state files are never on screen and never read for a capture.
+- No change to `docs/internals.md` beyond its opening sentence.
+- No change to code, tests, the manifest, or the Hyprland snippets.
+- No rewording of the keys table or the config defaults; they are copied.
+- The README voice and the choice of what each screenshot frames are the session model's, not bridged, because the wording and the framing are the deliverable.
+
+## Decision Context
+<!-- scope: both -->
+
+A feature list over the current one-paragraph tour, because a list can be scanned and a paragraph cannot; the paragraph's content is not lost, it becomes the per-feature account in the reference doc. A reference doc over deleting, because the marketplace reviewer and existing users rely on the exact dependency list, the setup account, and the limits, and the internals page is for reading the code, not for operating the plugin. Six region screenshots over one desktop shot or a recording, because a region shows one mechanism at README width and a recording cannot be scanned; staged over real content, because the maintainer's chats do not belong in a public repository. `CONTRIBUTING.md` over a docs page, because GitHub surfaces it on the repository page and in the pull-request flow. A dependency on fn-37 over writing now, because fn-37's own acceptance criteria rewrite the Install section and its task is claimed and in progress in this checkout; writing the README twice, or two sessions editing it in one working directory, is worse than waiting for one pull request.
