@@ -9,7 +9,7 @@
   "depends_on_epics": [],
   "id": "fn-38-readme-shows-the-features-and-drops-the",
   "impl_review_rounds": {
-    "fn-38-readme-shows-the-features-and-drops-the.1": 1
+    "fn-38-readme-shows-the-features-and-drops-the.1": 0
   },
   "next_task": 1,
   "no_plan": true,
@@ -95,9 +95,70 @@
       "task": "fn-38-readme-shows-the-features-and-drops-the.1",
       "timestamp": "2026-09-15T14:36:50.837567Z",
       "verdict": "NEEDS_WORK"
+    },
+    {
+      "artifact_sha256": "980943deadea4988fcd730a7d8cbfe37d705695f11714a6c60c01e798fce52a0",
+      "backend": "cursor",
+      "base_sha": "cdc7dadcf7b4c7608a587cceafac08631822908a",
+      "counter_kind": "impl",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "findings_digest": {
+        "backend": "cursor",
+        "digest_truncated": false,
+        "items": [
+          {
+            "chainRoot": "finding-d9abf9a0f4e7dedbf21162ef756386e3",
+            "classification": "introduced",
+            "findingId": "finding-d9abf9a0f4e7dedbf21162ef756386e3",
+            "firstSeenThisRound": false,
+            "severity": "P2",
+            "status": "withdrawn"
+          },
+          {
+            "chainRoot": "finding-ada99dfb3cf8b97cad85b73c7b45d45a",
+            "classification": "pre_existing",
+            "findingId": "finding-ada99dfb3cf8b97cad85b73c7b45d45a",
+            "firstSeenThisRound": false,
+            "severity": "P3",
+            "status": "not_fixed"
+          },
+          {
+            "chainRoot": "finding-0436fa72b403c2ccda235951870a886f",
+            "classification": "pre_existing",
+            "findingId": "finding-0436fa72b403c2ccda235951870a886f",
+            "firstSeenThisRound": true,
+            "severity": "P3",
+            "status": "open"
+          }
+        ],
+        "reviewKind": "implementation"
+      },
+      "forced": true,
+      "hash_epoch": 0,
+      "head_sha": "8efbe07d45bd9780a029fad61870016f1fedcaaa",
+      "head_sha_observed": true,
+      "kind": "impl",
+      "model": "gpt-5.6-sol-high",
+      "outcome": "verdict",
+      "output_bytes": 1322,
+      "output_sha256": "9397189fee35f6e08f46b79aae6248863645884da133c29b0d6ae7a21e6cb341",
+      "reservation_id": "b0d5d9ad32e14908a98e02403107d1b4",
+      "round_consumed": true,
+      "scope": "impl:fn-38-readme-shows-the-features-and-drops-the.1",
+      "superseded_by": null,
+      "task": "fn-38-readme-shows-the-features-and-drops-the.1",
+      "timestamp": "2026-09-15T14:45:59.820471Z",
+      "verdict": "SHIP"
     }
   ],
-  "review_hash_epoch": {},
+  "review_hash_epoch": {
+    "impl:fn-38-readme-shows-the-features-and-drops-the.1": 1
+  },
   "review_pending_rounds": {},
   "review_reservations": {},
   "review_transport_failures": {
@@ -117,5 +178,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-09-15T14:38:57.289514Z"
+  "updated_at": "2026-09-15T14:45:59.822771Z"
 }
