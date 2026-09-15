@@ -1,7 +1,7 @@
 {
   "branch_name": "fn-38-readme-shows-the-features-and-drops-the",
-  "completion_review_status": "unknown",
-  "completion_reviewed_at": "2026-09-15T14:47:28.028646Z",
+  "completion_review_status": "ship",
+  "completion_reviewed_at": "2026-09-15T15:22:09.418619Z",
   "created_at": "2026-09-15T08:53:24.731603Z",
   "default_impl": null,
   "default_review": null,
@@ -241,15 +241,45 @@
       "task": "fn-38-readme-shows-the-features-and-drops-the.2",
       "timestamp": "2026-09-15T15:17:59.106985Z",
       "verdict": "SHIP"
+    },
+    {
+      "artifact_sha256": "0ab13b51e32dd851ae2b065f12a24bf9b1e3bdbfac561626ae67452c96f9ca76",
+      "backend": "cursor",
+      "base_sha": "cdc7dadcf7b4c7608a587cceafac08631822908a",
+      "counter_kind": "plan",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "complete"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "4eddf7a623eeeb04c5e9a4ae9b6bfc449452d3c9",
+      "head_sha_observed": true,
+      "kind": "completion",
+      "model": "gpt-5.6-sol-high",
+      "outcome": "verdict",
+      "output_bytes": 3809,
+      "output_sha256": "9c6e2a6d08eaa1210840304ae247c06f481ca5a3bd277507c32d00bff07cde25",
+      "reservation_id": "45eded033e7c40bc9fb5b15877077599",
+      "round_consumed": true,
+      "scope": "completion",
+      "superseded_by": null,
+      "task": null,
+      "timestamp": "2026-09-15T15:22:09.416567Z",
+      "verdict": "SHIP"
     }
   ],
   "review_hash_epoch": {
     "impl:fn-38-readme-shows-the-features-and-drops-the.1": 1,
-    "impl:fn-38-readme-shows-the-features-and-drops-the.2": 1
+    "impl:fn-38-readme-shows-the-features-and-drops-the.2": 1,
+    "plan#completion": 1
   },
   "review_pending_rounds": {},
   "review_reservations": {},
   "review_transport_failures": {
+    "completion": 0,
     "impl:fn-38-readme-shows-the-features-and-drops-the.1": 0,
     "impl:fn-38-readme-shows-the-features-and-drops-the.2": 0
   },
@@ -267,5 +297,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-09-15T15:17:59.109585Z"
+  "updated_at": "2026-09-15T15:22:09.419080Z"
 }
