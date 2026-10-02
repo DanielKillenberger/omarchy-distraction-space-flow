@@ -1,0 +1,213 @@
+{
+  "branch_name": "fn-40-open-forwards-local-pages-and-about-urls",
+  "completion_review_status": "not_required",
+  "completion_reviewed_at": "2026-09-20T11:32:36.862833Z",
+  "created_at": "2026-09-20T11:08:32.894096Z",
+  "default_impl": null,
+  "default_review": null,
+  "default_sync": null,
+  "depends_on_epics": [],
+  "id": "fn-40-open-forwards-local-pages-and-about-urls",
+  "impl_review_rounds": {
+    "fn-40-open-forwards-local-pages-and-about-urls.1": 0
+  },
+  "next_task": 1,
+  "no_plan": true,
+  "plan_review_rounds": 0,
+  "plan_review_status": "unknown",
+  "plan_reviewed_at": null,
+  "review_attempts": [
+    {
+      "artifact_sha256": "7c386c5a2b65b2004c9d97f1df1dd84e39a81dabda246d4c9276d7a45d48593c",
+      "backend": "cursor",
+      "base_sha": "f422a346a3d68c13cdf544f06d42977967843313",
+      "counter_kind": "impl",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "findings_digest": {
+        "backend": "cursor",
+        "digest_truncated": false,
+        "items": [
+          {
+            "chainRoot": "finding-9a0b627971f582b7b7cd3922c7d12797",
+            "classification": "introduced",
+            "findingId": "finding-9a0b627971f582b7b7cd3922c7d12797",
+            "firstSeenThisRound": true,
+            "severity": "P2",
+            "status": "open"
+          },
+          {
+            "chainRoot": "finding-76eecbfff2e4373f2b75c88f0c227e56",
+            "classification": "introduced",
+            "findingId": "finding-76eecbfff2e4373f2b75c88f0c227e56",
+            "firstSeenThisRound": true,
+            "severity": "P2",
+            "status": "open"
+          }
+        ],
+        "reviewKind": "implementation"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "d4015334b828fb42e0861b1c429dbd3838e77232",
+      "head_sha_observed": true,
+      "kind": "impl",
+      "model": "gpt-5.6-sol-high",
+      "outcome": "verdict",
+      "output_bytes": 1960,
+      "output_sha256": "262945c2a4d6285170de05f1e168945bcf6964422df22f88d1f62f39b46b979e",
+      "reservation_id": "28418b5bceaa444296afdb5718e13633",
+      "round_consumed": true,
+      "scope": "impl:fn-40-open-forwards-local-pages-and-about-urls.1",
+      "superseded_by": null,
+      "task": "fn-40-open-forwards-local-pages-and-about-urls.1",
+      "timestamp": "2026-09-20T11:21:35.014041Z",
+      "verdict": "NEEDS_WORK"
+    },
+    {
+      "artifact_sha256": "55c9073f90040e19d87b053ffff0fe46d788a44adf430f38da5b530bc6d9dc0f",
+      "backend": "cursor",
+      "base_sha": "f422a346a3d68c13cdf544f06d42977967843313",
+      "counter_kind": "impl",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "findings_digest": {
+        "backend": "cursor",
+        "digest_truncated": false,
+        "items": [
+          {
+            "chainRoot": "finding-9a0b627971f582b7b7cd3922c7d12797",
+            "classification": "introduced",
+            "findingId": "finding-9a0b627971f582b7b7cd3922c7d12797",
+            "firstSeenThisRound": false,
+            "severity": "P2",
+            "status": "not_fixed"
+          },
+          {
+            "chainRoot": "finding-76eecbfff2e4373f2b75c88f0c227e56",
+            "classification": "introduced",
+            "findingId": "finding-76eecbfff2e4373f2b75c88f0c227e56",
+            "firstSeenThisRound": false,
+            "severity": "P2",
+            "status": "fixed"
+          },
+          {
+            "chainRoot": "finding-584220b1aff5f81f3b2712972bdce496",
+            "classification": "introduced",
+            "findingId": "finding-584220b1aff5f81f3b2712972bdce496",
+            "firstSeenThisRound": true,
+            "severity": "P2",
+            "status": "open"
+          }
+        ],
+        "reviewKind": "implementation"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "09168368ee3fd6d862a903b65ca33e401cea0882",
+      "head_sha_observed": true,
+      "kind": "impl",
+      "model": "gpt-5.6-sol-high",
+      "outcome": "verdict",
+      "output_bytes": 1262,
+      "output_sha256": "6d056346042f07f26f89bc67306183eb5f8de3594b5213ef1544e846ada98ee8",
+      "reservation_id": "d90daef2394b410ca2bfaf2362459505",
+      "round_consumed": true,
+      "scope": "impl:fn-40-open-forwards-local-pages-and-about-urls.1",
+      "superseded_by": null,
+      "task": "fn-40-open-forwards-local-pages-and-about-urls.1",
+      "timestamp": "2026-09-20T11:23:15.249290Z",
+      "verdict": "NEEDS_WORK"
+    },
+    {
+      "artifact_sha256": "ad16fc3cd2485aabaaaa2d47be4d618d8079a1be680843cac4a7345a0121925e",
+      "backend": "cursor",
+      "base_sha": "f422a346a3d68c13cdf544f06d42977967843313",
+      "counter_kind": "impl",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "findings_digest": {
+        "backend": "cursor",
+        "digest_truncated": false,
+        "items": [
+          {
+            "chainRoot": "finding-9a0b627971f582b7b7cd3922c7d12797",
+            "classification": "introduced",
+            "findingId": "finding-9a0b627971f582b7b7cd3922c7d12797",
+            "firstSeenThisRound": false,
+            "severity": "P2",
+            "status": "fixed"
+          },
+          {
+            "chainRoot": "finding-76eecbfff2e4373f2b75c88f0c227e56",
+            "classification": "introduced",
+            "findingId": "finding-76eecbfff2e4373f2b75c88f0c227e56",
+            "firstSeenThisRound": false,
+            "severity": "P2",
+            "status": "fixed"
+          },
+          {
+            "chainRoot": "finding-584220b1aff5f81f3b2712972bdce496",
+            "classification": "introduced",
+            "findingId": "finding-584220b1aff5f81f3b2712972bdce496",
+            "firstSeenThisRound": false,
+            "severity": "P2",
+            "status": "fixed"
+          }
+        ],
+        "reviewKind": "implementation"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "897aa2236a742838a30cb69799c36ba1a666eb41",
+      "head_sha_observed": true,
+      "kind": "impl",
+      "model": "gpt-5.6-sol-high",
+      "outcome": "verdict",
+      "output_bytes": 419,
+      "output_sha256": "46578162cbcd63fb233359b51c97755e777d18a8793d8c14f2add46a00266b45",
+      "reservation_id": "764928bd857440d3af280e698ba8c471",
+      "round_consumed": true,
+      "scope": "impl:fn-40-open-forwards-local-pages-and-about-urls.1",
+      "superseded_by": null,
+      "task": "fn-40-open-forwards-local-pages-and-about-urls.1",
+      "timestamp": "2026-09-20T11:24:37.853162Z",
+      "verdict": "SHIP"
+    }
+  ],
+  "review_hash_epoch": {
+    "impl:fn-40-open-forwards-local-pages-and-about-urls.1": 1
+  },
+  "review_pending_rounds": {},
+  "review_reservations": {},
+  "review_transport_failures": {
+    "impl:fn-40-open-forwards-local-pages-and-about-urls.1": 0
+  },
+  "spec_path": ".flow/specs/fn-40-open-forwards-local-pages-and-about-urls.md",
+  "status": "done",
+  "title": "Open forwards local pages and about: URLs",
+  "tracker": {
+    "baseHashFlow": null,
+    "baseHashTracker": null,
+    "depRelations": [],
+    "id": null,
+    "identifier": null,
+    "lastSyncedAt": null,
+    "mergeBaseFlow": null,
+    "mergeBaseTracker": null,
+    "url": null
+  },
+  "updated_at": "2026-09-20T13:48:42.361421Z"
+}

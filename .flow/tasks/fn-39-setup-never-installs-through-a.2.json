@@ -1,0 +1,16 @@
+{
+  "assignee": null,
+  "claim_note": "",
+  "claimed_at": null,
+  "created_at": "2026-09-18T21:57:08.209467Z",
+  "depends_on": [
+    "fn-39-setup-never-installs-through-a.1"
+  ],
+  "id": "fn-39-setup-never-installs-through-a.2",
+  "priority": null,
+  "spec": "fn-39-setup-never-installs-through-a",
+  "spec_path": ".flow/tasks/fn-39-setup-never-installs-through-a.2.md",
+  "status": "todo",
+  "title": "Version bump and the docs that describe the refusal",
+  "updated_at": "2026-09-18T21:57:08.209467Z"
+}
