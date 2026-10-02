@@ -8,7 +8,7 @@
   "priority": null,
   "spec": "fn-43-feedback-ports-only-reach-the-persons",
   "spec_path": ".flow/tasks/fn-43-feedback-ports-only-reach-the-persons.1.md",
-  "status": "todo",
+  "status": "done",
   "title": "Input chain gates the feedback ports to the person cgroup",
   "updated_at": "2026-10-02T07:43:25.134627Z"
 }
