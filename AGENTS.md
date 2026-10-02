@@ -12,6 +12,18 @@ This project uses Flow-Next for ALL task tracking. `flowctl` comes from the flow
 - If `flowctl` is not found: your shell lacks the plugin's `scripts/` dir on PATH (only Claude Code injects it). Resolve it the way the skills do - the plugin install's `scripts/flowctl` (Claude/Droid: plugin-root env var; Codex: `${CODEX_HOME:-$HOME/.codex}/scripts/flowctl`; Cursor/Grok: two levels above any flow-next SKILL.md) - or update/reinstall the flow-next plugin. A repo with no `.flow/` yet: run `/flow-next:setup`.
 <!-- END FLOW-NEXT -->
 
+## Where the flow state lives
+
+`.flow/`, `CLAUDE.md`, and `AGENTS.md` are not part of the plugin repository. They live in the sister repository `omarchy-distraction-space-flow` (checked out beside it at `../omarchy-distraction-space-flow`, remote `DanielKillenberger/omarchy-distraction-space-flow`) and reach the plugin checkout as three symlinks, all listed in the plugin's `.gitignore`. The marketplace reviewer asked for development orchestration to stay out of the repository Omarchy installs (fn-36).
+
+- Specs, tasks, memory, and receipts never show in the plugin's `git status` or in a PR diff, and `git add -A` there does not pick them up. Commit them in the sister repository, on its own history.
+- A fresh clone or a new git worktree of the plugin has none of the three symlinks. Recreate them before running `flowctl` there: `ln -s ../omarchy-distraction-space-flow/.flow .flow`, and the same for `CLAUDE.md` and `AGENTS.md`; adjust the relative path for a worktree that sits somewhere else.
+- Git refuses a path behind the symlink (`pathspec ... is beyond a symbolic link`), so run git commands for flow files from inside the sister repository.
+
+## Pull requests (owner, 2026-09-20)
+
+The format and the procedure are `pr-format.md` in the sister repository (`../omarchy-distraction-space-flow/pr-format.md` from a plugin checkout), taken over from Telperion. Every run of `/flow-next:make-pr`, by hand or under `flow --auto`, follows that file in place of the skill's body phases and does not read the skill's `workflow.md` or its companion files. The body is Change, Proof, Look here, Decisions and Open, 1,500 characters for a small diff and at most 4,000 for a large one, ending in the make-pr marker. No cognitive-aid artifact, no mermaid, no `pr.html`.
+
 <!-- flow-next:model-routing:start -->
 ## Model routing
 
@@ -24,10 +36,10 @@ This project uses Flow-Next for ALL task tracking. `flowctl` comes from the flow
      Name the model ids YOUR harness and account actually serve - ask the
      harness for its list, then invoke one; ids change and vary per account. -->
 
-reviewer: gpt-5.6-sol-high
+reviewer: gpt-6-astra at medium
 implementer: grok-4.6 at high
 <!-- reviewer is the host pin for review.backend host (bare only; model is not
-     in the backend string); this harness reaches it through the cursor backend.
+     in the backend string); this harness reaches it through the codex backend.
      implementer is reached through the grok CLI bridge (see CLAUDE.md,
      "Implementation routing"): the conductor writes a self-contained prompt,
      runs `grok --always-approve --no-plan -m grok-4.6 --reasoning-effort high
