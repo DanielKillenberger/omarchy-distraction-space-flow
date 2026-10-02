@@ -35,7 +35,7 @@ Traffic the firewall redirects to the feedback ports reaches only a socket the p
 
 ## Acceptance Criteria
 
-- **R1:** `render_table` emits an input chain whose first rule accepts a SYN without ACK to TCP 28080 or 28443 whose original destination (`ct original`) was a listed address on 80 or 443 when the receiving socket is in `user.slice/user-<uid>.slice`, and whose second rule resets the same match otherwise. [inferred]
+- **R1:** `render_table` emits an input chain whose first rule accepts a SYN without ACK to TCP 28080 or 28443 whose original destination (`ct original`) was a listed address on 80 landing on 28080, or on 443 landing on 28443, when the receiving socket is in `user.slice/user-<uid>.slice`, and whose second rule resets the same match otherwise. [inferred]
 - **R2:** `check ds` accepts the live listing of that table and reports drift when the input chain or either rule is missing or altered. [inferred]
 - **R3:** In a live namespace test, a connection redirected to 28080 reaches a listener inside the person's cgroup and is refused for a listener outside it, for IPv4 and IPv6. [inferred]
 - **R4:** `docs/internals.md` and `docs/reference.md` describe the gate and why it covers the failed bind and the reload window. [inferred]
