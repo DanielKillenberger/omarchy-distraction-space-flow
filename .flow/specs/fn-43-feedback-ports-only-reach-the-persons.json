@@ -9,25 +9,109 @@
   "depends_on_epics": [],
   "id": "fn-43-feedback-ports-only-reach-the-persons",
   "impl_review_rounds": {
-    "fn-43-feedback-ports-only-reach-the-persons.1": 1
+    "fn-43-feedback-ports-only-reach-the-persons.1": 0
   },
   "next_task": 1,
   "plan_review_rounds": 0,
   "plan_review_status": "unknown",
   "plan_reviewed_at": null,
-  "review_hash_epoch": {},
-  "review_pending_rounds": {
-    "impl:fn-43-feedback-ports-only-reach-the-persons.1": 1
-  },
-  "review_reservations": {
-    "0abe0903907d4894a73447a8cd5aec0e": {
+  "review_attempts": [
+    {
       "artifact_sha256": "f0ba95f0335593ff2fbbfc83d1c370930a0d2c6c42e5f322ee1c96355b1084ae",
-      "counter_scope": "impl:fn-43-feedback-ports-only-reach-the-persons.1",
-      "epoch": 0,
-      "exclusive": false,
+      "backend": "codex",
+      "base_sha": "268018a04143887b3d53e72455a8e9a34e16ee30",
+      "counter_kind": "impl",
+      "effort": "medium",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "findings_digest": {
+        "backend": "codex",
+        "digest_truncated": false,
+        "items": [
+          {
+            "chainRoot": "finding-2975b4a2c1354de767b708c616ad83ab",
+            "classification": "introduced",
+            "findingId": "finding-2975b4a2c1354de767b708c616ad83ab",
+            "firstSeenThisRound": true,
+            "severity": "P2",
+            "status": "open"
+          }
+        ],
+        "reviewKind": "implementation"
+      },
       "forced": false,
-      "review_type": "impl"
+      "hash_epoch": 1,
+      "head_sha": "e335d1965aa98a8e992858413d4c77d2d3d3273b",
+      "head_sha_observed": true,
+      "kind": "impl",
+      "model": "gpt-6-astra",
+      "outcome": "verdict",
+      "output_bytes": 886,
+      "output_sha256": "1135302efeb75fbb4882a85374055160b35db786045d008d73f2d3b0e9f250cd",
+      "reservation_id": "8369672cc13a49aaaf62cdb317bb4317",
+      "round_consumed": true,
+      "scope": "impl:fn-43-feedback-ports-only-reach-the-persons.1",
+      "superseded_by": null,
+      "task": "fn-43-feedback-ports-only-reach-the-persons.1",
+      "timestamp": "2026-10-02T07:54:23.842317Z",
+      "verdict": "NEEDS_WORK"
+    },
+    {
+      "artifact_sha256": "d0a44b22de40d6d8bd999b1ce985aae7a49a125f15002a7e56689fd9a8bb28f4",
+      "backend": "codex",
+      "base_sha": "268018a04143887b3d53e72455a8e9a34e16ee30",
+      "counter_kind": "impl",
+      "effort": "medium",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "findings_digest": {
+        "backend": "codex",
+        "digest_truncated": false,
+        "items": [
+          {
+            "chainRoot": "finding-2975b4a2c1354de767b708c616ad83ab",
+            "classification": "introduced",
+            "findingId": "finding-2975b4a2c1354de767b708c616ad83ab",
+            "firstSeenThisRound": false,
+            "severity": "P2",
+            "status": "fixed"
+          }
+        ],
+        "reviewKind": "implementation"
+      },
+      "forced": false,
+      "hash_epoch": 1,
+      "head_sha": "8fda552e56803373d5c45522fd5638ce301131d2",
+      "head_sha_observed": true,
+      "kind": "impl",
+      "model": "gpt-6-astra",
+      "outcome": "verdict",
+      "output_bytes": 1004,
+      "output_sha256": "90c6bea0025e8c0e646b0526a446c2525a302098bdb558ef549a68494f7ec9ff",
+      "reservation_id": "8467b5cbf3f04093bfdbd00973ad921d",
+      "round_consumed": true,
+      "scope": "impl:fn-43-feedback-ports-only-reach-the-persons.1",
+      "superseded_by": null,
+      "task": "fn-43-feedback-ports-only-reach-the-persons.1",
+      "timestamp": "2026-10-02T07:55:46.898641Z",
+      "verdict": "SHIP"
     }
+  ],
+  "review_hash_epoch": {
+    "impl:fn-43-feedback-ports-only-reach-the-persons.1": 2
+  },
+  "review_pending_rounds": {},
+  "review_reservations": {},
+  "review_transport_failures": {
+    "impl:fn-43-feedback-ports-only-reach-the-persons.1": 0
   },
   "spec_path": ".flow/specs/fn-43-feedback-ports-only-reach-the-persons.md",
   "status": "open",
@@ -43,5 +127,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-10-02T07:52:18.310728Z"
+  "updated_at": "2026-10-02T07:55:46.900840Z"
 }
