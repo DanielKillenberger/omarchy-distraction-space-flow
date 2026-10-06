@@ -218,7 +218,7 @@
     "impl:fn-44-summary-agents-run-text-only-with-no.1": 0
   },
   "spec_path": ".flow/specs/fn-44-summary-agents-run-text-only-with-no.md",
-  "status": "open",
+  "status": "done",
   "title": "Summary agents run text-only, with no tools",
   "tracker": {
     "baseHashFlow": null,
@@ -231,5 +231,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-10-06T12:37:40.273451Z"
+  "updated_at": "2026-10-06T12:48:07.508173Z"
 }

@@ -15,5 +15,5 @@ claude runs with --tools "" --strict-mcp-config, proven by a live canary. grok, 
 stage: plan-sync - skipped(config: planSync.enabled != true)
 ## Evidence
 - Commits: 26dd846, 378d814, 1873a33, 2572134
-- Tests: PATH=/usr/bin:$PATH python3 -m unittest discover -s tests, scratchpad probe.py live canary across claude, grok, copilot, gemini, opencode
-- PRs:
+- Tests: PATH=/usr/bin:$PATH python3 -m unittest discover -s tests
+- PRs: https://github.com/DanielKillenberger/omarchy-distraction-space/pull/40
