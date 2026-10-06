@@ -9,6 +9,6 @@
   "spec": "fn-44-summary-agents-run-text-only-with-no",
   "spec_path": ".flow/tasks/fn-44-summary-agents-run-text-only-with-no.1.md",
   "status": "todo",
-  "title": "Built-in summary routes allow no tools, proven by a live canary",
-  "updated_at": "2026-10-02T18:43:47.561287Z"
+  "title": "Summary agents run without tools where proven, with tools only on acceptance",
+  "updated_at": "2026-10-06T12:40:04.256110Z"
 }
