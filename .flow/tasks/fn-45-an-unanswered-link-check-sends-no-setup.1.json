@@ -1,0 +1,14 @@
+{
+  "assignee": null,
+  "claim_note": "",
+  "claimed_at": null,
+  "created_at": "2026-10-08T16:13:48.901483Z",
+  "depends_on": [],
+  "id": "fn-45-an-unanswered-link-check-sends-no-setup.1",
+  "priority": null,
+  "spec": "fn-45-an-unanswered-link-check-sends-no-setup",
+  "spec_path": ".flow/tasks/fn-45-an-unanswered-link-check-sends-no-setup.1.md",
+  "status": "todo",
+  "title": "The displaced notice waits for an answered link check",
+  "updated_at": "2026-10-08T16:13:48.901483Z"
+}
