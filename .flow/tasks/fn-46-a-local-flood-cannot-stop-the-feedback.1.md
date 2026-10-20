@@ -14,6 +14,6 @@ TBD
 
 stage: plan-sync - skipped(config: planSync.enabled != true)
 ## Evidence
-- Commits: 120f61a3c64faa02a5bda8483d1a9ea552e01461
+- Commits: f4cac2e, e813df1
 - Tests: PATH=/usr/bin:$PATH python3 -m unittest discover -s tests
-- PRs:
+- PRs: https://github.com/DanielKillenberger/omarchy-distraction-space/pull/41
