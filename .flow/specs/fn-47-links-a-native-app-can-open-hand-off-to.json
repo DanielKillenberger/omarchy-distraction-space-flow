@@ -1,11 +1,134 @@
 {
   "branch_name": "fn-47-links-a-native-app-can-open-hand-off-to",
+  "completion_review_status": "unknown",
+  "completion_reviewed_at": null,
   "created_at": "2026-10-20T20:37:15.635586Z",
+  "default_impl": null,
+  "default_review": null,
+  "default_sync": null,
   "depends_on_epics": [],
   "id": "fn-47-links-a-native-app-can-open-hand-off-to",
+  "impl_review_rounds": {},
   "next_task": 1,
-  "plan_review_status": "unknown",
-  "plan_reviewed_at": null,
+  "plan_review_rounds": 0,
+  "plan_review_status": "ship",
+  "plan_reviewed_at": "2026-10-20T21:09:32.678183Z",
+  "review_attempts": [
+    {
+      "artifact_sha256": "48a3681be8ae3789328c3db03a6aad554265f4c1fd9dad0208319fc6d50d2fd3",
+      "backend": "codex",
+      "base_sha": "0b9a65f7a3dcbbb5b2600f2abbdbc270b672364d",
+      "counter_kind": "plan",
+      "effort": "medium",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "complete"
+      },
+      "findings_digest": {
+        "backend": "codex",
+        "digest_truncated": false,
+        "items": [
+          {
+            "chainRoot": "finding-7d831948cc5911dc82500a69b4f69972",
+            "classification": "introduced",
+            "findingId": "finding-7d831948cc5911dc82500a69b4f69972",
+            "firstSeenThisRound": true,
+            "severity": "P1",
+            "status": "open"
+          },
+          {
+            "chainRoot": "finding-6a085d593c0806846beaefcf1acc1869",
+            "classification": "introduced",
+            "findingId": "finding-6a085d593c0806846beaefcf1acc1869",
+            "firstSeenThisRound": true,
+            "severity": "P2",
+            "status": "open"
+          }
+        ],
+        "reviewKind": "plan"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "0b9a65f7a3dcbbb5b2600f2abbdbc270b672364d",
+      "head_sha_observed": true,
+      "kind": "plan",
+      "model": "gpt-6-astra",
+      "outcome": "verdict",
+      "output_bytes": 114126,
+      "output_sha256": "2385d42a97a6b5b4ac878404e03f0df36174a45248c3026da310cd8cb4956ad0",
+      "reservation_id": "f3606dc467c742cfbd86475518b53db0",
+      "round_consumed": true,
+      "scope": "plan",
+      "superseded_by": null,
+      "task": null,
+      "timestamp": "2026-10-20T21:08:22.139941Z",
+      "tool_calls": 7,
+      "verdict": "NEEDS_WORK"
+    },
+    {
+      "artifact_sha256": "d7c9785b9d9f2c232eaa41c66e8a5093bb0b3b0b0fee4f64456f11fc40686e72",
+      "backend": "codex",
+      "base_sha": "0b9a65f7a3dcbbb5b2600f2abbdbc270b672364d",
+      "counter_kind": "plan",
+      "effort": "medium",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "complete"
+      },
+      "findings_digest": {
+        "backend": "codex",
+        "digest_truncated": false,
+        "items": [
+          {
+            "chainRoot": "finding-7d831948cc5911dc82500a69b4f69972",
+            "classification": "introduced",
+            "findingId": "finding-7d831948cc5911dc82500a69b4f69972",
+            "firstSeenThisRound": false,
+            "severity": "P1",
+            "status": "fixed"
+          },
+          {
+            "chainRoot": "finding-6a085d593c0806846beaefcf1acc1869",
+            "classification": "introduced",
+            "findingId": "finding-6a085d593c0806846beaefcf1acc1869",
+            "firstSeenThisRound": false,
+            "severity": "P2",
+            "status": "fixed"
+          }
+        ],
+        "reviewKind": "plan"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "0b9a65f7a3dcbbb5b2600f2abbdbc270b672364d",
+      "head_sha_observed": true,
+      "kind": "plan",
+      "model": "gpt-6-astra",
+      "outcome": "verdict",
+      "output_bytes": 745,
+      "output_sha256": "33771ac0bcd593276a0e078a1477add1b33b89052c489c91f9b6638a46ce8ffb",
+      "reservation_id": "3ac4b74c43324cdfbf88f12f1346ecbe",
+      "round_consumed": true,
+      "scope": "plan",
+      "superseded_by": null,
+      "task": null,
+      "timestamp": "2026-10-20T21:09:32.675646Z",
+      "verdict": "SHIP"
+    }
+  ],
+  "review_hash_epoch": {
+    "plan": 1,
+    "plan#completion": 0
+  },
+  "review_pending_rounds": {},
+  "review_reservations": {},
+  "review_transport_failures": {
+    "plan": 0
+  },
   "spec_path": ".flow/specs/fn-47-links-a-native-app-can-open-hand-off-to.md",
   "status": "open",
   "title": "Links a native app can open hand off to that app",
@@ -20,5 +143,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-10-20T20:56:31.445752Z"
+  "updated_at": "2026-10-20T21:09:32.678766Z"
 }
