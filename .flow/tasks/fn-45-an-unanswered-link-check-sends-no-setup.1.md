@@ -7,10 +7,10 @@ TBD
 - [ ] TBD
 
 ## Done summary
-check_links sends the displaced notice only when xdg-settings answered with another id; an unanswered check still reads displaced in the state. Regression test test_an_unanswered_link_check_sends_no_setup_notice failed before the change and passes after, and also proves a later real displacement still gets its one notice. docs/internals.md updated; 3.4.3. Review skipped: a one-condition change to when a notice shows, with no state, security or data-layout change.
+`check_links` takes `answered` (the reconcile result's `links_ok`) and sends the setup notice only for an answered displacement; the state still reads `displaced` for an unanswered check. `test_an_unanswered_link_check_sends_no_setup_notice` covers R1 and R2; `docs/internals.md` says the notice waits for an answer (R3). The version bump to 3.4.3 shipped with fn-46 (#41), so this branch carries none after the rebase; both fixes release together as v3.4.3.
 
 stage: plan-sync - skipped(config: planSync.enabled != true)
 ## Evidence
-- Commits: 446dcca
+- Commits: 268d91d
 - Tests: PATH=/usr/bin:$PATH python3 -m unittest discover -s tests
-- PRs:
+- PRs: https://github.com/DanielKillenberger/omarchy-distraction-space/pull/42
