@@ -25,9 +25,12 @@ Docs and version for the whole spec.
 - [ ] Full suite passes once: `PATH=/usr/bin:$PATH python3 -m unittest discover -s tests`
 
 ## Done summary
-TBD
+`docs/reference.md`: a "Links an app can open go to the app" paragraph (behaviour, shipped apps, Discord left out, usable-handler rule, order, `--app` exception, privacy of the log), `handoff.rules` and `handoff.off` rows in the config table, the rule format with a person-rule example (verified to parse and match), and the `open` command row. `docs/internals.md`: the hook point and engine/launch split in the `open` resolution order, why Steam uses `steam://store`, `handoff.json` under catalog shapes, `xdg-mime` in the test fakes. `manifest.json` 3.5.0 in its own `chore(release)` commit.
+Full suite: 598 ran, OK, 1 skipped.
+stage: impl-review - skipped(policy: deferred to one spec-level review after .4, the tasks share one feature surface)
 
+stage: plan-sync - skipped(config: planSync.enabled != true)
 ## Evidence
-- Commits:
-- Tests:
+- Commits: 326c87ea47c02f82f722fc3b6021a8aee794047d, 718b2eacef22f75ba22dfd006ada4d17df4e0ba4
+- Tests: PATH=/usr/bin:$PATH python3 -m unittest discover -s tests
 - PRs:

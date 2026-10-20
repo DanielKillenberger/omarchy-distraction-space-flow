@@ -34,9 +34,12 @@ Build the rule engine and wire it into `open`, proven end to end with the shippe
 - [ ] Encoded captures, bad characters, non-default port and userinfo do not match (R5)
 - [ ] Focused tests pass: `PATH=/usr/bin:$PATH python3 -m unittest tests.test_handoff tests.test_launch`
 ## Done summary
-TBD
+`ds/handoff.py` parses rules (app, scheme, hosts, shapes with a full-match path regex, optional raw query parameters, a `{name}`/`{url}` URI template), refuses unsafe schemes, and yields (rule, uri) per matching rule; it never logs or launches and returns load failures as reasons. `handoff.json` ships the Spotify rule. `ds/launch.py` checks the rules just before an http(s) forward (not for `--app`), looks up `xdg-mime query default x-scheme-handler/<scheme>`, rejects a missing file, the plugin's entry, the recorded browser, an Exec without `%u`/`%U` and the plugin's own launcher, and launches through `_detached` with the forward env; failure falls through to `forward`, with `_detached`'s own line as the one log line. The success log names app and desktop id only.
+Tests: tests/test_handoff.py (matcher, R1/R5 shapes, malformed rules) and six end-to-end tests in tests/test_launch.py (R1 handoff and every unusable handler, start failure with exactly one line, R2 no xdg-mime call, R3 listed host stays in the space); the handoff test fails with the hook removed.
+stage: impl-review - skipped(policy: deferred to one spec-level review after .4, the tasks share one feature surface)
 
+stage: plan-sync - skipped(config: planSync.enabled != true)
 ## Evidence
-- Commits:
-- Tests:
+- Commits: 4cfcb7d278630fb2f49dd80cacd9a04b187e11db
+- Tests: PATH=/usr/bin:$PATH python3 -m unittest tests.test_launch tests.test_handoff
 - PRs:

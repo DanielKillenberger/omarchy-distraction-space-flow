@@ -27,9 +27,16 @@ Add the remaining shipped rules as data, each with example-link tests. Pure data
 - [ ] Steam's whole-URL rule refuses non-Steam hosts and URLs with forbidden characters (R6, R5)
 - [ ] Focused tests pass: `PATH=/usr/bin:$PATH python3 -m unittest tests.test_handoff_rules`
 ## Done summary
-TBD
+Shipped rules now cover Spotify, Zoom, Slack, Steam and Telegram, each tested in tests/test_handoff_rules.py against every recognised shape and several unmappable links, with its source named beside the tests:
+- Zoom: `zoom.us`/`usNNweb.zoom.us` `/j|w/<id>[?pwd=]` → `zoommtg://zoom.us/join?action=join&confno=<id>[&pwd=]` (Zoom developer forum; the Linux client registers zoommtg). Vanity subdomains are not covered since hosts are exact.
+- Slack: `app.slack.com/client/<T…>[/<C|G|D…>]` → `slack://channel?team=&id=` / `slack://open?team=` (docs.slack.dev deep linking).
+- Steam: `store.steampowered.com/app/<id>[/slug]` → `steam://store/<id>` (Valve's Steam browser protocol page). The planned whole-URL `steam://openurl/<url>` was dropped: Valve documents it as opening the system's default browser, which is this plugin, so the R6 note about Steam's whole-URL rule no longer applies; `{url}` stays available and tested for person rules.
+- Telegram: `t.me`/`telegram.me` `/<username>[/<post>]` → `tg://resolve?domain=[&post=]` (core.telegram.org/api/links), reserved paths excluded.
+- Left out: Discord. Its `discord://-/channels/...` routes are documented only in an unofficial gist, so R6 names it for the PR.
+stage: impl-review - skipped(policy: deferred to one spec-level review after .4, the tasks share one feature surface)
 
+stage: plan-sync - skipped(config: planSync.enabled != true)
 ## Evidence
-- Commits:
-- Tests:
+- Commits: ec701fc2e4a2cf820f3cc316a3ac5833d9ab808e
+- Tests: PATH=/usr/bin:$PATH python3 -m unittest tests.test_handoff_rules tests.test_handoff
 - PRs:

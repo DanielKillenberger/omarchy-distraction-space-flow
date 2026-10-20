@@ -29,9 +29,12 @@ Let the person add rules, replace a shipped rule by app name, and turn shipped r
 - [ ] A malformed rule, an unknown field, a bad pattern and each refused scheme are skipped with one log line while the other rules still hand off (R4)
 - [ ] Focused tests pass: `PATH=/usr/bin:$PATH python3 -m unittest tests.test_handoff tests.test_config`
 ## Done summary
-TBD
+Config gains `handoff: {"rules": [], "off": []}`; `validate` checks only the outer shape (a list of objects, a list of strings), so `config set` refuses a wrong type while a rule that does not parse is skipped at open time. `handoff.load_rules(cfg)` puts the person's rules first in file order, then each shipped rule not named in `off` and not replaced by a person rule of the same app name (case-insensitive; a person rule that fails to parse still claims its name, so the log explains why neither runs). Skipped rules come back as reasons; `open` logs one line each.
+Tests: PersonRuleTests in tests/test_handoff.py (add, replace, off, order, skipped reasons, wrong-shaped section), GOOD/BAD values in tests/test_config.py, and an end-to-end `config set` + `open` test in tests/test_launch.py.
+stage: impl-review - skipped(policy: deferred to one spec-level review after .4, the tasks share one feature surface)
 
+stage: plan-sync - skipped(config: planSync.enabled != true)
 ## Evidence
-- Commits:
-- Tests:
+- Commits: 8327637ea7542b32aa6452ce4a7395c66f2d9414
+- Tests: PATH=/usr/bin:$PATH python3 -m unittest tests.test_handoff tests.test_config tests.test_launch
 - PRs:
