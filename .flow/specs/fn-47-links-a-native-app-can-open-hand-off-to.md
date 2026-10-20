@@ -8,7 +8,7 @@
 > user (turn 3, selected): "Shipped + user config (Recommended)"
 > user (turn 3, selected): "Spotify + common ones"
 
-Facts established on 2026-10-20 by reading the code and the relayed diagnosis. The plugin's desktop entry is the default handler for http, https, about, unknown and text/html, so every web link the desktop opens goes through `distractions open`. Target resolution sends an http(s) URL whose host is listed into the space and forwards every other one to the previously recorded browser handler. On the reporting machine `x-scheme-handler/spotify` resolves to `spotify.desktop` (`spotify --uri=%u`), and the desktop app claims no https links, so before the plugin took over https the browser also loaded the web player.
+Facts established on 2026-10-20 by reading the code and the relayed diagnosis. The plugin's desktop entry is the default handler for http and https, so every web link the desktop opens goes through `distractions open`. Target resolution sends an http(s) URL whose host is listed into the space and forwards every other one to the previously recorded browser handler. On the reporting machine `x-scheme-handler/spotify` resolves to `spotify.desktop` (`spotify --uri=%u`), and the desktop app claims no https links, so before the plugin took over https the browser also loaded the web player.
 
 ## Goal & Context
 <!-- scope: business -->
@@ -18,39 +18,82 @@ A link to something a native app on this machine can show opens in that app, not
 ## Architecture & Data Models
 <!-- scope: technical -->
 
-**A handoff rule** names an app, the hosts it applies to, the link shapes it recognises, and how a recognised link becomes a URI in the app's scheme. The shape language must express what the shipped apps need: an optional leading path segment such as Spotify's `intl-xx`, captured path segments, a captured query parameter, and wrapping the whole original URL (Steam's `steam://openurl/<url>`) [inferred]. Shipped rules sit beside the catalog as plugin data; the person's rules live in the plugin config [inferred].
+**A handoff rule** names an app, the target scheme, the hosts it applies to, and one or more link shapes. A shape fully matches the URL path (an optional leading segment such as Spotify's `intl-xx` is part of the pattern), may read named query parameters, each with its own allowed-character pattern and a required flag, and renders a URI template from the named captures. One placeholder stands for the whole original URL, for apps whose scheme wraps a web URL (Steam's `steam://openurl/<url>`).
 
-**Resolution order.** A listed host still opens in the space, unchanged. Only a link that would otherwise forward is checked against the rules; the first rule that recognises it and whose scheme has a usable handler wins; otherwise the link forwards as today [inferred].
+**Two sources, one ordered list.** Shipped rules are plugin data beside the catalog. The person's rules sit under one config key holding a list of rules and a list of shipped app names turned off. Order: the person's rules in file order, then the shipped rules that are neither turned off nor replaced; a person rule whose app name equals a shipped one replaces it.
 
-**A usable handler** is the desktop entry the system names as default for `x-scheme-handler/<scheme>`, existing on disk, and not the plugin's own entry [inferred].
+**Where it runs.** Target resolution is unchanged. When `open` is about to forward an http(s) link, it first checks the rules; a link opened with `--app` (an Omarchy web-app entry the person made) skips the check, since the person chose a web app for it. Only after a shape matches is the handler looked up, so a link no rule recognises costs nothing new.
+
+**A usable handler** is the desktop id `xdg-mime query default x-scheme-handler/<scheme>` prints, whose desktop file exists, which is neither the plugin's own entry nor the recorded previous browser handler, and whose Exec line has a URL field code to carry the URI. The app is launched from that entry directly, detached and outside the space, never through `xdg-open`, which would route web URLs back to the plugin. Browser flags passed to `open` are not applied to a handoff and are logged as such, the way a space launch logs them.
+
+```mermaid
+flowchart LR
+  A[distractions open URL] --> B{listed host?}
+  B -- yes --> S[open in the space]
+  B -- no --> C{--app?}
+  C -- yes --> F[forward to browser]
+  C -- no --> D{rule shape matches?}
+  D -- no --> F
+  D -- yes --> E{usable scheme handler?}
+  E -- no --> F
+  E -- yes --> G{handler launched?}
+  G -- yes --> H[native app]
+  G -- no, logged --> F
+```
 
 ## Edge Cases & Constraints
 <!-- scope: technical -->
 
-- A captured value only reaches the generated URI if it is made of the characters the rule allows for it; anything else means the rule does not match, so a crafted link cannot smuggle extra URI parts into the app [inferred].
-- A rule may only target a scheme that is not http, https, file, about, javascript or data, so a rule cannot loop a link back through the browser path or into a local file [inferred].
-- Handing off launches the app outside the space. That is right for an unlisted app and is why listed hosts keep their current path: a listed distraction never escapes containment through a rule [inferred].
-- A malformed person-defined rule is skipped with one log line; the shipped rules and the person's other rules still apply [inferred].
+- Host matching is exact on the lowercased host with a trailing dot removed; a rule lists every host it covers. A non-default port or userinfo in the authority means no match. Both http and https match.
+- Path literals are case-sensitive. A captured value is checked against its allowed characters before any percent-decoding, and the default allowed set excludes `%`, `/`, whitespace and control characters, so an encoded or crafted value means no match and nothing extra reaches the app's URI. The fragment is ignored; unnamed query parameters are ignored; a named one is read from its first occurrence.
+- The whole-URL placeholder is only valid for a rule restricted to the app's own hosts, and it renders only when the whole URL is free of whitespace, quotes, angle brackets, backslashes and control characters; otherwise the shape does not match.
+- A rule's target scheme must be a well-formed scheme name and none of http, https, file, about, javascript, data, ftp, mailto, ws or wss.
+- Config validation stays strict about the key's outer shape (a list of rule objects and a list of names), so `config set` refuses a value of the wrong type. A rule with a missing or unknown field, a bad pattern or a refused scheme is skipped when rules are loaded, with one log line per open naming it; the others apply.
+- `xdg-mime` missing, failing, timing out or printing nothing means no handler, silently. A handler that could not be started is logged once and the link forwards. A handler that starts and exits later is not observed; nothing promises more than "it started".
+- Handing off launches the app outside the space. That is right for an unlisted app and is why listed hosts keep their current path: a listed distraction never escapes containment through a rule.
 
 ## Acceptance Criteria
 <!-- scope: both -->
 
-- **R1:** An http(s) link with an unlisted host that a rule recognises opens through that rule's scheme handler as the mapped URI, and no browser opens; for Spotify, `open.spotify.com/{track,album,playlist,artist,episode,show}/<id>`, with or without the `intl-xx/` prefix and the `?si=` query, opens as `spotify:<type>:<id>`. Errors: no default handler for the scheme, a handler whose desktop file is missing, or a handler that is the plugin itself → the link forwards to the browser as today; the handler failing to start → the link forwards and one line is logged. [paraphrase]
-- **R2:** A link no rule recognises, including a recognised host with an unmappable path (`/user/...`, the homepage), forwards to the browser exactly as today (no error surface beyond R1). [paraphrase]
-- **R3:** A link whose host is listed opens in the space exactly as today, even when a rule would recognise it (no error surface beyond the existing listed path). [inferred]
-- **R4:** The person can add rules in config, replace a shipped rule by its app name, and turn a shipped rule off. Errors: a malformed rule, or one whose target scheme is http, https, file, about, javascript or data → that rule is skipped with one log line and the others apply. [paraphrase]
-- **R5:** A captured value containing a character its rule does not allow makes the rule not match, so the link forwards (no error surface beyond R2). [inferred]
-- **R6:** The plugin ships rules for Spotify, Zoom, Slack, Steam, Discord and Telegram, each with tests mapping real example links of every recognised shape. An app whose mapping cannot be confirmed against its Linux client is left out and named in the pull request. [inferred]
-- **R7:** `docs/reference.md` describes the handoff, the resolution order and the rule format with an example of a person-defined rule; `manifest.json` carries a version past the last tag. [inferred]
+- **R1:** An http(s) link with an unlisted host that a rule recognises, opened without `--app`, opens through that rule's scheme handler as the mapped URI, and no browser opens; for Spotify, `open.spotify.com/{track,album,playlist,artist,episode,show}/<id>`, with or without the `intl-xx/` prefix and the `?si=` query, opens as `spotify:<type>:<id>`. Errors: `xdg-mime` missing, failing or silent; a handler whose desktop file is missing; a handler that is the plugin's entry or the recorded browser; a handler whose Exec cannot carry the URI → the link forwards as today; the handler failing to start → the link forwards and one line is logged.
+- **R2:** A link no rule recognises, including a recognised host with an unmappable path (`/user/...`, the homepage), and any link opened with `--app`, forwards to the browser exactly as today, with no `xdg-mime` call (no error surface beyond R1).
+- **R3:** A link whose host is listed opens in the space exactly as today, even when a rule would recognise it (no error surface beyond the existing listed path).
+- **R4:** The person can add rules in config, replace a shipped rule by its app name, and turn a shipped rule off, with the order in Architecture. Errors: a value of the wrong outer shape → `config set` refuses it; a malformed rule, one with an unknown field, or one whose target scheme is refused → that rule is skipped with one log line and the others apply.
+- **R5:** A captured value containing a character its shape does not allow, a percent-encoded value, a non-default port, userinfo, or a whole URL with a forbidden character makes the shape not match, so the link forwards (no error surface beyond R2).
+- **R6:** The plugin ships rules for Spotify, Zoom, Slack, Steam, Discord and Telegram, each tested against example links of every recognised shape and at least one unmappable link. The pull request names each app's scheme source, and an app whose mapping cannot be confirmed is left out and named there.
+- **R7:** `docs/reference.md` describes the handoff, the order, the rule format with an example of a person-defined rule, and the `--app` exception; `docs/internals.md` places it in the `open` resolution order and lists the new test fake; `manifest.json` carries 3.5.0.
+
+## Early proof point
+
+Task fn-47-links-a-native-app-can-open-hand-off-to.1 validates the core approach (a data-driven Spotify rule handed to a fake `spotify:` handler through the real `open` path, with every fallback forwarding). If it fails, re-evaluate the rule format and the hook point before continuing with .2+.
 
 ## Boundaries
 <!-- scope: business -->
 
-- Not changing what happens to a listed host's links, nor launching a listed app's native client from a link. [inferred]
-- No per-open override to force the browser for a link a rule recognises; turning the rule off in config is the way. [inferred]
-- No handoff for schemes other than http and https arriving at the plugin. [inferred]
+- Not changing what happens to a listed host's links, nor launching a listed app's native client from a link.
+- No per-open override to force the browser for a link a rule recognises; turning the rule off in config is the way.
+- No handoff for schemes other than http and https arriving at the plugin.
+- No caching of handler lookups and no status or doctor listing of active rules.
 
 ## Decision Context
 <!-- scope: both -->
 
-A Spotify special case was rejected for a generic rule mechanism with Spotify as one entry, so apps can be added as data and by the person without a plugin release [paraphrase]. Shipping rules only in the plugin was rejected because the person wants any native app link to work [paraphrase].
+A Spotify special case was rejected for a generic rule mechanism with Spotify as one entry, so apps can be added as data and by the person without a plugin release [paraphrase]. Shipping rules only in the plugin was rejected because the person wants any native app link to work [paraphrase]. `--app` skips the handoff because those entries are web apps the person installed on purpose. Launching through `xdg-open` was rejected because the plugin is the web handler and a wrapped URL could come back to it. The version moves to 3.5.0 since this adds a feature.
+
+## Quick commands
+
+```bash
+PATH=/usr/bin:$PATH python3 -m unittest tests.test_launch tests.test_handoff tests.test_config
+```
+
+## Requirement coverage
+
+| Req | Description | Task(s) | Gap justification |
+| --- | --- | --- | --- |
+| R1 | An http(s) link with an unlisted host that a rule recognises, opened without `--app`, opens through that rule's scheme handler as the mapped URI, and no browser opens; for Spotify, `open.spotify.com/{track,album,playlist,artist,episode,show}/<id>`, with or without the `intl-xx/` prefix and the `?si=` query, opens as `spotify:<type>:<id>`. Errors: `xdg-mime` missing, failing or silent; a handler whose desktop file is missing; a handler that is the plugin's entry or the recorded browser; a handler whose Exec cannot carry the URI → the link forwards as today; the handler failing to start → the link forwards and one line is logged. | fn-47-links-a-native-app-can-open-hand-off-to.1 | — |
+| R2 | A link no rule recognises, including a recognised host with an unmappable path (`/user/...`, the homepage), and any link opened with `--app`, forwards to the browser exactly as today, with no `xdg-mime` call (no error surface beyond R1). | fn-47-links-a-native-app-can-open-hand-off-to.1 | — |
+| R3 | A link whose host is listed opens in the space exactly as today, even when a rule would recognise it (no error surface beyond the existing listed path). | fn-47-links-a-native-app-can-open-hand-off-to.1 | — |
+| R4 | The person can add rules in config, replace a shipped rule by its app name, and turn a shipped rule off, with the order in Architecture. Errors: a value of the wrong outer shape → `config set` refuses it; a malformed rule, one with an unknown field, or one whose target scheme is refused → that rule is skipped with one log line and the others apply. | fn-47-links-a-native-app-can-open-hand-off-to.2 | — |
+| R5 | A captured value containing a character its shape does not allow, a percent-encoded value, a non-default port, userinfo, or a whole URL with a forbidden character makes the shape not match, so the link forwards (no error surface beyond R2). | fn-47-links-a-native-app-can-open-hand-off-to.1 | — |
+| R6 | The plugin ships rules for Spotify, Zoom, Slack, Steam, Discord and Telegram, each tested against example links of every recognised shape and at least one unmappable link. The pull request names each app's scheme source, and an app whose mapping cannot be confirmed is left out and named there. | fn-47-links-a-native-app-can-open-hand-off-to.3 | — |
+| R7 | `docs/reference.md` describes the handoff, the order, the rule format with an example of a person-defined rule, and the `--app` exception; `docs/internals.md` places it in the `open` resolution order and lists the new test fake; `manifest.json` carries 3.5.0. | fn-47-links-a-native-app-can-open-hand-off-to.4 | — |

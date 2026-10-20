@@ -1,0 +1,16 @@
+{
+  "assignee": null,
+  "claim_note": "",
+  "claimed_at": null,
+  "created_at": "2026-10-20T20:56:24.909908Z",
+  "depends_on": [
+    "fn-47-links-a-native-app-can-open-hand-off-to.1"
+  ],
+  "id": "fn-47-links-a-native-app-can-open-hand-off-to.2",
+  "priority": null,
+  "spec": "fn-47-links-a-native-app-can-open-hand-off-to",
+  "spec_path": ".flow/tasks/fn-47-links-a-native-app-can-open-hand-off-to.2.md",
+  "status": "todo",
+  "title": "Person-defined rules in config: add, replace, turn off",
+  "updated_at": "2026-10-20T20:56:24.909908Z"
+}

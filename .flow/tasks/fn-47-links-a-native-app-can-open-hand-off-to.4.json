@@ -1,0 +1,17 @@
+{
+  "assignee": null,
+  "claim_note": "",
+  "claimed_at": null,
+  "created_at": "2026-10-20T20:56:24.910003Z",
+  "depends_on": [
+    "fn-47-links-a-native-app-can-open-hand-off-to.2",
+    "fn-47-links-a-native-app-can-open-hand-off-to.3"
+  ],
+  "id": "fn-47-links-a-native-app-can-open-hand-off-to.4",
+  "priority": null,
+  "spec": "fn-47-links-a-native-app-can-open-hand-off-to",
+  "spec_path": ".flow/tasks/fn-47-links-a-native-app-can-open-hand-off-to.4.md",
+  "status": "todo",
+  "title": "Document the handoff and release 3.5.0",
+  "updated_at": "2026-10-20T20:56:24.910003Z"
+}
