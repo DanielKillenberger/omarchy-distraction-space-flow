@@ -1,0 +1,78 @@
+{
+  "branch_name": "fn-49-a-bare-url-as-the-first-argument-opens",
+  "completion_review_status": "unknown",
+  "completion_reviewed_at": null,
+  "created_at": "2026-10-21T09:49:08.332496Z",
+  "default_impl": null,
+  "default_review": null,
+  "default_sync": null,
+  "depends_on_epics": [],
+  "id": "fn-49-a-bare-url-as-the-first-argument-opens",
+  "impl_review_rounds": {
+    "fn-49-a-bare-url-as-the-first-argument-opens.1": 0
+  },
+  "next_task": 1,
+  "plan_review_rounds": 0,
+  "plan_review_status": "unknown",
+  "plan_reviewed_at": null,
+  "review_attempts": [
+    {
+      "artifact_sha256": "fec92729a7fac287b24ae7aae04bdbac323d4c5b4d2b095dc7ac9d11bdb3552a",
+      "backend": "codex",
+      "base_sha": "8fd8ab44970a4138ff90322544afd7dac9cc9760",
+      "counter_kind": "impl",
+      "effort": "medium",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "findings_digest": {
+        "backend": "codex",
+        "digest_truncated": false,
+        "items": [],
+        "reviewKind": "implementation"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "d5ff7bd4697f0a70c292490b737cec7e794a5105",
+      "head_sha_observed": true,
+      "kind": "impl",
+      "model": "gpt-6-astra",
+      "outcome": "verdict",
+      "output_bytes": 158,
+      "output_sha256": "6ff70da3d83706800ca3cabc6ba62603ba0485fcf5259d27f1be54ce68686975",
+      "reservation_id": "683306ad53414faeb814c6d6edb45cbe",
+      "round_consumed": true,
+      "scope": "impl:fn-49-a-bare-url-as-the-first-argument-opens.1",
+      "superseded_by": null,
+      "task": "fn-49-a-bare-url-as-the-first-argument-opens.1",
+      "timestamp": "2026-10-21T10:02:12.075118Z",
+      "verdict": "SHIP"
+    }
+  ],
+  "review_hash_epoch": {
+    "impl:fn-49-a-bare-url-as-the-first-argument-opens.1": 1
+  },
+  "review_pending_rounds": {},
+  "review_reservations": {},
+  "review_transport_failures": {
+    "impl:fn-49-a-bare-url-as-the-first-argument-opens.1": 0
+  },
+  "spec_path": ".flow/specs/fn-49-a-bare-url-as-the-first-argument-opens.md",
+  "status": "done",
+  "title": "A bare URL as the first argument opens it",
+  "tracker": {
+    "baseHashFlow": null,
+    "baseHashTracker": null,
+    "depRelations": [],
+    "id": null,
+    "identifier": null,
+    "lastSyncedAt": null,
+    "mergeBaseFlow": null,
+    "mergeBaseTracker": null,
+    "url": null
+  },
+  "updated_at": "2026-10-21T10:37:49.294544Z"
+}

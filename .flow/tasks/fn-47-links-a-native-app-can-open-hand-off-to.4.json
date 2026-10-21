@@ -11,7 +11,7 @@
   "priority": null,
   "spec": "fn-47-links-a-native-app-can-open-hand-off-to",
   "spec_path": ".flow/tasks/fn-47-links-a-native-app-can-open-hand-off-to.4.md",
-  "status": "todo",
+  "status": "done",
   "title": "Document the handoff and release 3.5.0",
   "updated_at": "2026-10-20T20:56:24.910003Z"
 }

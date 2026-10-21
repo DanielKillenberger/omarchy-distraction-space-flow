@@ -8,7 +8,7 @@
   "priority": null,
   "spec": "fn-46-a-local-flood-cannot-stop-the-feedback",
   "spec_path": ".flow/tasks/fn-46-a-local-flood-cannot-stop-the-feedback.1.md",
-  "status": "todo",
+  "status": "done",
   "title": "Bound live feedback handlers and survive a failed thread start",
   "updated_at": "2026-10-19T21:57:32.745750Z"
 }

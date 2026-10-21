@@ -1,0 +1,131 @@
+{
+  "branch_name": "fn-48-state-files-are-readable-only-by-their",
+  "completion_review_status": "unknown",
+  "completion_reviewed_at": null,
+  "created_at": "2026-10-21T09:49:07.850919Z",
+  "default_impl": null,
+  "default_review": null,
+  "default_sync": null,
+  "depends_on_epics": [],
+  "id": "fn-48-state-files-are-readable-only-by-their",
+  "impl_review_rounds": {
+    "fn-48-state-files-are-readable-only-by-their.1": 0
+  },
+  "next_task": 1,
+  "plan_review_rounds": 0,
+  "plan_review_status": "unknown",
+  "plan_reviewed_at": null,
+  "review_attempts": [
+    {
+      "artifact_sha256": "9bfe4aaf2fd127393c1b2107b5e1606840ea89ef862a1dc72d771ca3520adbe3",
+      "backend": "codex",
+      "base_sha": "0b9a65f7a3dcbbb5b2600f2abbdbc270b672364d",
+      "counter_kind": "impl",
+      "effort": "medium",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "findings_digest": {
+        "backend": "codex",
+        "digest_truncated": false,
+        "items": [
+          {
+            "chainRoot": "finding-a7ee2a3693dfe7b9c189cceee4e595b0",
+            "classification": "introduced",
+            "findingId": "finding-a7ee2a3693dfe7b9c189cceee4e595b0",
+            "firstSeenThisRound": true,
+            "severity": "P2",
+            "status": "open"
+          }
+        ],
+        "reviewKind": "implementation"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "093143927c8b840922d255fac72e6313487ce858",
+      "head_sha_observed": true,
+      "kind": "impl",
+      "model": "gpt-6-astra",
+      "outcome": "verdict",
+      "output_bytes": 927,
+      "output_sha256": "6b77428c56be3e45e2bd35e334574cec5aef16df968ada20e95ce37c4c4615db",
+      "reservation_id": "27392b689982464f9430d53135ec17e4",
+      "round_consumed": true,
+      "scope": "impl:fn-48-state-files-are-readable-only-by-their.1",
+      "superseded_by": null,
+      "task": "fn-48-state-files-are-readable-only-by-their.1",
+      "timestamp": "2026-10-21T10:00:13.149854Z",
+      "verdict": "NEEDS_WORK"
+    },
+    {
+      "artifact_sha256": "dc70224449ab73acdf6b362832bd9b57e5753070efca05528dc4f9892bc56723",
+      "backend": "codex",
+      "base_sha": "0b9a65f7a3dcbbb5b2600f2abbdbc270b672364d",
+      "counter_kind": "impl",
+      "effort": "medium",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "findings_digest": {
+        "backend": "codex",
+        "digest_truncated": false,
+        "items": [
+          {
+            "chainRoot": "finding-a7ee2a3693dfe7b9c189cceee4e595b0",
+            "classification": "introduced",
+            "findingId": "finding-a7ee2a3693dfe7b9c189cceee4e595b0",
+            "firstSeenThisRound": false,
+            "severity": "P2",
+            "status": "fixed"
+          }
+        ],
+        "reviewKind": "implementation"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "8fd8ab44970a4138ff90322544afd7dac9cc9760",
+      "head_sha_observed": true,
+      "kind": "impl",
+      "model": "gpt-6-astra",
+      "outcome": "verdict",
+      "output_bytes": 912,
+      "output_sha256": "42d89010dae453e404ab19595ffa9e1f1d3bcd32eba6a65649684e05f65103eb",
+      "reservation_id": "c6335a81c5cb443bb5960878b8915a46",
+      "round_consumed": true,
+      "scope": "impl:fn-48-state-files-are-readable-only-by-their.1",
+      "superseded_by": null,
+      "task": "fn-48-state-files-are-readable-only-by-their.1",
+      "timestamp": "2026-10-21T10:01:09.856880Z",
+      "verdict": "SHIP"
+    }
+  ],
+  "review_hash_epoch": {
+    "impl:fn-48-state-files-are-readable-only-by-their.1": 1
+  },
+  "review_pending_rounds": {},
+  "review_reservations": {},
+  "review_transport_failures": {
+    "impl:fn-48-state-files-are-readable-only-by-their.1": 0
+  },
+  "spec_path": ".flow/specs/fn-48-state-files-are-readable-only-by-their.md",
+  "status": "done",
+  "title": "State files are readable only by their owner",
+  "tracker": {
+    "baseHashFlow": null,
+    "baseHashTracker": null,
+    "depRelations": [],
+    "id": null,
+    "identifier": null,
+    "lastSyncedAt": null,
+    "mergeBaseFlow": null,
+    "mergeBaseTracker": null,
+    "url": null
+  },
+  "updated_at": "2026-10-21T10:37:48.768723Z"
+}

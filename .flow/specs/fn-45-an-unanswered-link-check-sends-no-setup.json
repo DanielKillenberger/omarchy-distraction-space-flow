@@ -14,7 +14,7 @@
   "plan_review_status": "unknown",
   "plan_reviewed_at": null,
   "spec_path": ".flow/specs/fn-45-an-unanswered-link-check-sends-no-setup.md",
-  "status": "open",
+  "status": "done",
   "title": "An unanswered link check sends no setup notice",
   "tracker": {
     "baseHashFlow": null,
@@ -27,5 +27,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-10-08T16:13:32.787675Z"
+  "updated_at": "2026-10-21T10:37:47.273325Z"
 }

@@ -130,7 +130,7 @@
     "plan": 0
   },
   "spec_path": ".flow/specs/fn-47-links-a-native-app-can-open-hand-off-to.md",
-  "status": "open",
+  "status": "done",
   "title": "Links a native app can open hand off to that app",
   "tracker": {
     "baseHashFlow": null,
@@ -143,5 +143,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-10-20T21:09:32.678766Z"
+  "updated_at": "2026-10-21T10:37:48.231073Z"
 }
