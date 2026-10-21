@@ -8,7 +8,7 @@
   "priority": null,
   "spec": "fn-36-marketplace-review-no-agent-instruction",
   "spec_path": ".flow/tasks/fn-36-marketplace-review-no-agent-instruction.1.md",
-  "status": "todo",
+  "status": "done",
   "title": "Implement the marketplace review fixes",
   "updated_at": "2026-09-06T20:55:25.512501Z"
 }

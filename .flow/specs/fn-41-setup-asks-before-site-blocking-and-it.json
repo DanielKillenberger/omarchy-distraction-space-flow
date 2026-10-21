@@ -296,7 +296,7 @@
     "impl:fn-41-setup-asks-before-site-blocking-and-it.1": 0
   },
   "spec_path": ".flow/specs/fn-41-setup-asks-before-site-blocking-and-it.md",
-  "status": "open",
+  "status": "done",
   "title": "Setup asks before site blocking, and it can be turned on later",
   "tracker": {
     "baseHashFlow": null,
@@ -309,5 +309,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-09-20T15:56:17.844046Z"
+  "updated_at": "2026-10-21T10:45:43.239772Z"
 }

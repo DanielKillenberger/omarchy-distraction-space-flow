@@ -10,7 +10,7 @@
   "review": "cursor:gpt-5.6-sol-high",
   "spec": "fn-41-setup-asks-before-site-blocking-and-it",
   "spec_path": ".flow/tasks/fn-41-setup-asks-before-site-blocking-and-it.1.md",
-  "status": "todo",
+  "status": "done",
   "title": "Implement Setup asks before site blocking, and it can be turned on later",
   "updated_at": "2026-09-20T14:33:21.125898Z"
 }

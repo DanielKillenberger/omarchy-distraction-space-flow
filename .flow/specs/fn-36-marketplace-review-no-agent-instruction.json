@@ -96,7 +96,7 @@
     "impl:fn-36-marketplace-review-no-agent-instruction.1": 0
   },
   "spec_path": ".flow/specs/fn-36-marketplace-review-no-agent-instruction.md",
-  "status": "open",
+  "status": "done",
   "title": "Marketplace review: no agent instruction files, fixed root destinations",
   "tracker": {
     "baseHashFlow": null,
@@ -109,5 +109,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-09-06T21:57:20.283447Z"
+  "updated_at": "2026-10-21T10:45:42.730490Z"
 }
