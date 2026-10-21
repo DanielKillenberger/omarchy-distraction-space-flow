@@ -1,0 +1,14 @@
+{
+  "assignee": null,
+  "claim_note": "",
+  "claimed_at": null,
+  "created_at": "2026-10-21T12:57:00.090917Z",
+  "depends_on": [],
+  "id": "fn-51-the-distraction-profile-stays-in-the.1",
+  "priority": null,
+  "spec": "fn-51-the-distraction-profile-stays-in-the",
+  "spec_path": ".flow/tasks/fn-51-the-distraction-profile-stays-in-the.1.md",
+  "status": "todo",
+  "title": "Record and reuse the profile's browser for an unclassifiable default",
+  "updated_at": "2026-10-21T12:57:00.090917Z"
+}

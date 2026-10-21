@@ -1,0 +1,147 @@
+{
+  "branch_name": "fn-51-the-distraction-profile-stays-in-the",
+  "completion_review_status": "unknown",
+  "completion_reviewed_at": null,
+  "created_at": "2026-10-21T12:52:06.778428Z",
+  "default_impl": null,
+  "default_review": null,
+  "default_sync": null,
+  "depends_on_epics": [],
+  "id": "fn-51-the-distraction-profile-stays-in-the",
+  "impl_review_rounds": {
+    "fn-51-the-distraction-profile-stays-in-the.1": 0
+  },
+  "next_task": 1,
+  "plan_review_rounds": 0,
+  "plan_review_status": "unknown",
+  "plan_reviewed_at": null,
+  "review_attempts": [
+    {
+      "artifact_sha256": "ce234eab83df81b82679af74f408c1e0429116ad9d68818a6d25ea94b83c21fd",
+      "backend": "codex",
+      "base_sha": "a01817ceb8296cfc68326ba22e1d198e945f28de",
+      "counter_kind": "impl",
+      "effort": "medium",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "findings_digest": {
+        "backend": "codex",
+        "digest_truncated": false,
+        "items": [
+          {
+            "chainRoot": "finding-298512e1cf9b5b520af5ffbfd9804aa5",
+            "classification": "introduced",
+            "findingId": "finding-298512e1cf9b5b520af5ffbfd9804aa5",
+            "firstSeenThisRound": true,
+            "severity": "P2",
+            "status": "open"
+          },
+          {
+            "chainRoot": "finding-2769be73a36b037a672ecffc3d2e07b7",
+            "classification": "introduced",
+            "findingId": "finding-2769be73a36b037a672ecffc3d2e07b7",
+            "firstSeenThisRound": true,
+            "severity": "P2",
+            "status": "open"
+          }
+        ],
+        "reviewKind": "implementation"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "dbdf3f59da5f7c1161f9be0b9385e7fd7caebaec",
+      "head_sha_observed": true,
+      "kind": "impl",
+      "model": "gpt-6-astra",
+      "outcome": "verdict",
+      "output_bytes": 1606,
+      "output_sha256": "145950332761b7f45af9113511936bba2fe6fb183401fed5a1ef825f3dc5f784",
+      "reservation_id": "20186941f9c24477b5350dc6348ae7c5",
+      "round_consumed": true,
+      "scope": "impl:fn-51-the-distraction-profile-stays-in-the.1",
+      "superseded_by": null,
+      "task": "fn-51-the-distraction-profile-stays-in-the.1",
+      "timestamp": "2026-10-21T12:58:17.344961Z",
+      "verdict": "NEEDS_WORK"
+    },
+    {
+      "artifact_sha256": "621a566d92c06c170b8312f8a1a9ecc8e3596de5bfaae70342f36ed6222691d7",
+      "backend": "codex",
+      "base_sha": "a01817ceb8296cfc68326ba22e1d198e945f28de",
+      "counter_kind": "impl",
+      "effort": "medium",
+      "failure_class": null,
+      "finalized": {
+        "digest": "complete",
+        "receipt": "complete",
+        "status": "not_applicable"
+      },
+      "findings_digest": {
+        "backend": "codex",
+        "digest_truncated": false,
+        "items": [
+          {
+            "chainRoot": "finding-298512e1cf9b5b520af5ffbfd9804aa5",
+            "classification": "introduced",
+            "findingId": "finding-298512e1cf9b5b520af5ffbfd9804aa5",
+            "firstSeenThisRound": false,
+            "severity": "P2",
+            "status": "fixed"
+          },
+          {
+            "chainRoot": "finding-2769be73a36b037a672ecffc3d2e07b7",
+            "classification": "introduced",
+            "findingId": "finding-2769be73a36b037a672ecffc3d2e07b7",
+            "firstSeenThisRound": false,
+            "severity": "P2",
+            "status": "fixed"
+          }
+        ],
+        "reviewKind": "implementation"
+      },
+      "forced": false,
+      "hash_epoch": 0,
+      "head_sha": "15a53c482a2afb363d6f75371391ec6677f3b17f",
+      "head_sha_observed": true,
+      "kind": "impl",
+      "model": "gpt-6-astra",
+      "outcome": "verdict",
+      "output_bytes": 941,
+      "output_sha256": "0bdb04c77fd74cd468391882064d6c3a6f9d3ef1a533ade60cb55b0ebb9ebdac",
+      "reservation_id": "c47c791fc35a4a599ae683ef9fa5a3e6",
+      "round_consumed": true,
+      "scope": "impl:fn-51-the-distraction-profile-stays-in-the.1",
+      "superseded_by": null,
+      "task": "fn-51-the-distraction-profile-stays-in-the.1",
+      "timestamp": "2026-10-21T13:00:02.495479Z",
+      "verdict": "SHIP"
+    }
+  ],
+  "review_hash_epoch": {
+    "impl:fn-51-the-distraction-profile-stays-in-the.1": 1
+  },
+  "review_pending_rounds": {},
+  "review_reservations": {},
+  "review_transport_failures": {
+    "impl:fn-51-the-distraction-profile-stays-in-the.1": 0
+  },
+  "spec_path": ".flow/specs/fn-51-the-distraction-profile-stays-in-the.md",
+  "status": "open",
+  "title": "The distraction profile stays in the browser that ran it",
+  "tracker": {
+    "baseHashFlow": null,
+    "baseHashTracker": null,
+    "depRelations": [],
+    "id": null,
+    "identifier": null,
+    "lastSyncedAt": null,
+    "mergeBaseFlow": null,
+    "mergeBaseTracker": null,
+    "url": null
+  },
+  "updated_at": "2026-10-21T13:00:02.498596Z"
+}
