@@ -130,7 +130,7 @@
     "impl:fn-51-the-distraction-profile-stays-in-the.1": 0
   },
   "spec_path": ".flow/specs/fn-51-the-distraction-profile-stays-in-the.md",
-  "status": "open",
+  "status": "done",
   "title": "The distraction profile stays in the browser that ran it",
   "tracker": {
     "baseHashFlow": null,
@@ -143,5 +143,5 @@
     "mergeBaseTracker": null,
     "url": null
   },
-  "updated_at": "2026-10-21T13:00:02.498596Z"
+  "updated_at": "2026-10-21T13:17:36.015393Z"
 }
